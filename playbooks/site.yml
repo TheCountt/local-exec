@@ -2,6 +2,9 @@
 - name: jenkins assignment
   import_playbook: ../static-assignments/jenkins.yml
 
+- name: sonarqube assignment
+  import_playbook: ../static-assignments/sonarqube.yml
+
 # - hosts: tag_Name_ACS_nginx
 # - name: nginx assignment
 #   import_playbook: ../static-assignments/nginx.yml
@@ -18,10 +21,6 @@
 # - name: artifactory assignment
 #   import_playbook: ../static-assignments/jfrog.yml
 
-# - hosts: tag_Name_ACS_sonarqube
-#   user: ubuntu
-# - name: sonarqube assignment
-#   import_playbook: ../static-assignments/sonar.yml
 
 
 

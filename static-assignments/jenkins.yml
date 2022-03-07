@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: jenkins
   become: true
   tags: jenkins
   roles:
