@@ -1,13 +1,18 @@
 ---
-- name: Enable a RHSM repository
-  community.general.rhsm_repository:
-    name: rhel-8-server-rpms
-
 - name: install epel-release from a remote repo
-  ansible.builtin.dnf:
+  ansible.builtin.yum:
     name: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm'
     state: present
 
+- name: Upgrade all packages
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+
+# - name: Enable a RHSM repository
+#   community.general.rhsm_repository:
+#     name: rhel-8-for-x86_64-baseos-rpms
+#     state: enabled
 
 # tasks file for jenkins
 - name: import repository key from jenkins
