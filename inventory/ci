@@ -1,0 +1,13 @@
+[jenkins]
+172.31.55.2
+
+[artifactory]
+
+[sonarqube]
+
+[deployments:children]
+jenkins
+artifactory
+
+[deployments:vars]
+ansible_user=ec2-user
