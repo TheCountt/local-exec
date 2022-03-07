@@ -4,6 +4,13 @@
     name: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm'
     state: present
 
+# - name: install epel-release from a remote repo
+#   yum_repository:
+#     name: epel
+#     description: EPEL YUM repo
+#     baseurl: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm'
+#     state: present
+
 - name: Upgrade all packages
   ansible.builtin.yum:
     name: '*'
