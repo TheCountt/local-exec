@@ -14,8 +14,9 @@
    state: present
 
 - name: ensure the repository is installed
-  apt_repository: 'deb https://pkg.jenkins.io/debian-stable binary/'
-  state: present
+  apt_repository: 
+   repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+   state: present
   
 - name: install jenkins
   ansible.builtin.apt: 
