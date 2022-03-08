@@ -1,15 +1,8 @@
 [jenkins]
-172.31.1.136
+172.31.1.136 ansible_user=ec2-user
 
 
 [artifactory]
 
 [sonarqube]
 172.31.15.176 ansible_user=ubuntu
-
-[deployments:children]
-jenkins
-artifactory
-
-[deployments:vars]
-ansible_user=ec2-user
