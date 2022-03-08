@@ -1,0 +1,32 @@
+---
+- name: Update ubuntu
+  ansible.builtin.apt:
+   update_cache: yes
+
+- name: install java
+  ansible.builtin.apt:
+   name: openjdk-11-jre
+   state: present
+
+- name: install jenkins apt repository key
+  apt_key: 
+   url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+   state: present
+
+- name: ensure the repository is installed
+  apt_repository: 'deb https://pkg.jenkins.io/debian-stable binary/'
+  state: present
+  
+- name: install jenkins
+  ansible.builtin.apt: 
+   name: jenkins
+   state: present
+   update_cache: yes
+   force_apt_get: yes
+
+- name: start and enable jenkins
+  ansible.builtin.service:
+   name: jenkins
+   state: started
+   enabled: true
+   daemon_reload: yes
