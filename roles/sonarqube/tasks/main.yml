@@ -1,11 +1,9 @@
 ---
 # tasks file for sonarqube
 - name: set max_map
-  become: true
   command: sysctl -w vm.max_map_count=262144
 
 - name: set file max
-  become: true
   command: sysctl -w fs.file-max=65536
 
  
