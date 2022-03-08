@@ -1,14 +1,12 @@
+---
 [jenkins]
-localhost
-
-[artifactory]
+172.31.55.2
 
 [sonarqube]
 172.31.15.176 ansible_user=ubuntu
 
 [deployments:children]
 jenkins
-artifactory
 
 [deployments:vars]
 ansible_user=ec2-user
