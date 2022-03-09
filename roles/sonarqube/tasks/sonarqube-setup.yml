@@ -1,10 +1,8 @@
-- name: install unzip and wget
+- name: install necessary packages
   ansible.builtin.apt:
     name:
       - unzip
       - wget
-      - libpq-dev
-      - python-psycopg2
 
 - name: download the zip file
   ansible.builtin.get_url:
@@ -37,14 +35,18 @@
     state: absent
 
 - name: add user to run sonar
-  shell: useradd -c "user to run SonarQube" -d /opt/sonarqube -g sonar sonar
+  shell: >
+   useradd -c "user to run SonarQube" -d /opt/sonarqube -g sonar sonar
   args:
-   creates: sonar-user.txt
+   removes: sonar-user.txt
+  # ignore_errors: true
 
 - name: change ownership
-  shell: chown sonar:sonar /opt/sonarqube -R
+  shell: >
+   chown sonar:sonar /opt/sonarqube -R
   args:
-   creates: sonar-owner.txt
+   removes: sonar-owner.txt
+  # ignore_errors: true
     
 - name: Configuring the SonarQube Server
   ansible.builtin.template:
