@@ -3,6 +3,8 @@
     name:
       - unzip
       - wget
+      - libpq-dev
+      - python-psycopg2
 
 - name: download the zip file
   ansible.builtin.get_url:
