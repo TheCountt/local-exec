@@ -1,3 +1,4 @@
+
 # Property values can:
 # - reference an environment variable, for example sonar.jdbc.url= ${env:SONAR_JDBC_URL}
 # - be encrypted. See https://redirect.sonarsource.com/doc/settings-encryption.html
@@ -102,7 +103,7 @@ sonar.web.javaAdditionalOpts=-server
 # Binding IP address. For servers with more than one IP address, this property specifies which
 # address will be used for listening on the specified ports.
 # By default, ports will be used on all IP addresses associated with the server.
-snar.web.host=0.0.0.0
+sonar.web.host=0.0.0.0
 
 # Web context. When set, it must start with forward slash (for example /sonarqube).
 # The default value is root context (empty value).
@@ -422,7 +423,3 @@ sonar.web.port=9000
 
 # Elasticsearch HTTP connector
 #sonar.search.httpPort=-1
-
-
-
-
