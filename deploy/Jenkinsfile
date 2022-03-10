@@ -26,8 +26,8 @@ pipeline {
 
       stage('Prepare Ansible For Execution') {
         steps {
-          sh 'echo ${WORKSPACE}/ansible.cfg' 
-          // sh 'sed -i "4 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/ansible.cfg'  
+          sh 'echo ${WORKSPACE}' 
+          sh 'sed -i "4 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/ansible.cfg'  
         }
      }
 
