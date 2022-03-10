@@ -6,7 +6,7 @@
     name: java-11-openjdk-devel
     state: present
 
-- name: install java 11
+- name: install needed package
   ansible.builtin.yum:
     name: 
       - wget

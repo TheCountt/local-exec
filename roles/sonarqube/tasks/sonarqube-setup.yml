@@ -39,14 +39,12 @@
    useradd -c "user to run SonarQube" -d /opt/sonarqube -g sonar sonar
   args:
    removes: sonar-user.txt
-  # ignore_errors: true
-
+ 
 - name: change ownership
   shell: >
    chown sonar:sonar /opt/sonarqube -R
   args:
    removes: sonar-owner.txt
-  # ignore_errors: true
     
 - name: Configuring the SonarQube Server
   ansible.builtin.template:

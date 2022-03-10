@@ -5,21 +5,10 @@
 - name: sonarqube assignment
   import_playbook: ../static-assignments/sonarqube.yml
 
-# - hosts: tag_Name_ACS_nginx
-# - name: nginx assignment
-#   import_playbook: ../static-assignments/nginx.yml
-
-# - hosts: tag_Name_ACS_tooling 
-# - name: tooling assignment
-#   import_playbook: ../static-assignments/tooling.yml
-
-# - hosts: tag_Name_ACS_wordpress
-# - name: wordpress assignment
-#   import_playbook: ../static-assignments/wordpress.yml
+- name: artifactory assignment
+  import_playbook: ../static-assignments/artifactory.yml
   
-# - hosts: tag_Name_ACS_artifactory
-# - name: artifactory assignment
-#   import_playbook: ../static-assignments/jfrog.yml
+
 
 
 

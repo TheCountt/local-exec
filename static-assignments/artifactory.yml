@@ -1,5 +1,6 @@
 ---
-- hosts: tag_Name_ACS_artifactory
+- hosts: artifactory
   become: true
+  tags: artifactory
   roles:
      - artifactory
