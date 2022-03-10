@@ -31,7 +31,7 @@ pipeline {
         }
      }
 
-      stage('Execute Ansibe playbook) {
+      stage('Execute Ansibe playbook') {
         steps {
            ansiblePlaybook become: true, colorized: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.ini', playbook: 'playbooks/site.yml'
          }
