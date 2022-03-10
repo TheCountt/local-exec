@@ -31,6 +31,12 @@ pipeline {
         }
      }
 
+     stage('install psycopg2'){
+       steps {
+         sh 'pip3 install psycopg2'
+       }
+     }
+
       stage('Run Ansible playbook') {
         steps {
            ansiblePlaybook become: true, colorized: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.ini', playbook: 'playbooks/site.yml', skippedTags: 'jenkins'
