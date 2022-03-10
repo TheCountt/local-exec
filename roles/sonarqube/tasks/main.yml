@@ -1,9 +1,4 @@
 ---
-- name: install community progresql
-  command: ansible-galaxy collection install community.postgresql
-  args:
-    creates: community-progresql.txt
-
 # tasks file for sonarqube
 - name: set max_map
   command: sysctl -w vm.max_map_count=262144
