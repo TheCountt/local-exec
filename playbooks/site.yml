@@ -5,8 +5,8 @@
 - name: artifactory assignment
   import_playbook: ../static-assignments/artifactory.yml
 
-- name: sonarqube assignment
-  import_playbook: ../static-assignments/sonarqube.yml
+# - name: sonarqube assignment
+#   import_playbook: ../static-assignments/sonarqube.yml
 
   
 
