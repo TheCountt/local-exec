@@ -2,11 +2,11 @@
 - name: jenkins assignment
   import_playbook: ../static-assignments/jenkins.yml
 
-- name: sonarqube assignment
-  import_playbook: ../static-assignments/sonarqube.yml
+# - name: sonarqube assignment
+#   import_playbook: ../static-assignments/sonarqube.yml
 
-- name: artifactory assignment
-  import_playbook: ../static-assignments/artifactory.yml
+# - name: artifactory assignment
+#   import_playbook: ../static-assignments/artifactory.yml
   
 
 
