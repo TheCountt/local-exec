@@ -7,11 +7,3 @@
 
 # - name: artifactory assignment
 #   import_playbook: ../static-assignments/artifactory.yml
-  
-
-
-
-
-
-
-

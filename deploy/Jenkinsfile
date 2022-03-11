@@ -1,20 +1,47 @@
 pipeline {
-agent any
-  stages {
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
-        }
-      }
+  agent any
+
+  environment {
+      ANSIBLE_CONFIG="${WORKSPACE}/ansible.cfg"
     }
 
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
+  parameters {
+      string(name: 'inventory', defaultValue: 'ci.ini',  description: 'This is the inventory file for the environment to deploy configuration')
+    }
+
+  stages{
+      stage("Initial cleanup") {
+          steps {
+            dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
+        }
+
+      stage('Checkout SCM') {
+         steps{
+            git branch: 'test', credentialsId: 'git:a78d564b7e3823083a9092b5e9c7848dcd701c99dd20ae466e9a20691bf39f8e', url: 'https://TheCountt@bitbucket.org/thecountt/ci-cd.git'
+         }
+       }
+
+      stage('Prepare Ansible For Execution') {
+        steps {
+          sh 'echo ${WORKSPACE}' 
+          sh 'sed -i "4 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/ansible.cfg'  
+        }
+     }
+
+      stage('Execute Ansibe playbook') {
+        steps {
+           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.ini', playbook: 'playbooks/site.yml'
+         }
+      }
+
+      stage('Clean Workspace after build'){
+        steps{
+          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
         }
       }
-    }
-    }
+   }
+
 }
