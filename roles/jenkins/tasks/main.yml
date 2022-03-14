@@ -15,20 +15,4 @@
    creates: community.txt
 
 
-- name: install python3
-  ansible.builtin.apt:
-    name: 
-      - python3
-      - python3-pip
-      - python3-dev
-      - libpq-dev
-    state: present
- 
-- name: Install psycopg2
-  shell: >
-   pip3 install psycopg2
-  args:
-   creates: psycopg2.txt
-
-
 
