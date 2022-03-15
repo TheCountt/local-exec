@@ -6,7 +6,8 @@ pipeline {
     }
 
   parameters {
-      string(name: 'inventory', defaultValue: 'ci.ini',  description: 'This is the inventory file for the environment to deploy configuration')
+      // string(name: 'inventory', defaultValue: 'ci.ini',  description: 'This is the inventory file for the environment to deploy configuration')
+       string(name: 'inventory', defaultValue: '${inventory_file}', description: 'selecting the environment')
     }
 
   stages{
