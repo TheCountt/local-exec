@@ -57,7 +57,7 @@
     path: /opt/sonarqube/bin/linux-x86-64/sonar.sh
     regexp: '^#RUN_AS_USER='
     state: present
-    line: RUN_AS_USER=sonar
+    line: RUN_AS_USER="sonar"
     
 
 - name: create a service file

@@ -59,14 +59,14 @@
 
 - name: Ensure group sonar exists
   ansible.builtin.group:
-    name: "sonar"
+    name: sonar
     state: present
 
 - import_tasks: sonarqube-setup.yml
 
 - name: start and enable sonarqube
   ansible.builtin.service:
-    name: "sonar"
+    name: sonar
     state: started
     enabled: yes
 
