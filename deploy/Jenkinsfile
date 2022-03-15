@@ -33,7 +33,7 @@ pipeline {
 
       stage('Execute Ansibe playbook') {
         steps {
-           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.ini', playbook: 'playbooks/site.yml'
+           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
           }
         }
 
@@ -42,20 +42,5 @@ pipeline {
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
          }
        }
-
-      stage('SonarQube Quality Gate') {
-        when { branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"}
-          environment {
-            scannerHome = tool 'SonarQubeScanner'
-         }
-        steps {
-          withSonarQubeEnv('sonarqube') {
-              sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-          }
-             timeout(time: 1, unit: 'MINUTES') {
-                 waitForQualityGate abortPipeline: true
-               }
-          }
-      }
    }
 }
