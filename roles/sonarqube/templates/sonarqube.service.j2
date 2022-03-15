@@ -8,8 +8,8 @@ Type=forking
 ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
 ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
 
-User=sonar
-Group=sonar
+User="sonar"
+Group="sonar"
 Restart=always
 
 LimitNOFILE=65536
