@@ -58,10 +58,10 @@
     regexp: '^#RUN_AS_USER='
     state: present
     line: RUN_AS_USER=sonar
-  # notify: Reload Sonarqube server daemon
+  notify: Reload Sonarqube server daemon
 
-# - name: Flush handlers
-#   meta: flush_handlers
+- name: Flush handlers
+  meta: flush_handlers
     
 
 - name: create a service file

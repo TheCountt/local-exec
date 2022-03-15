@@ -64,9 +64,9 @@
 
 - import_tasks: sonarqube-setup.yml
 
-# - name: re-execute sonarqube server daemon
-#   systemd:
-#     daemon_reexec: yes
+- name: re-execute sonarqube server daemon
+  systemd:
+    daemon_reexec: yes
 
 - name: start and enable sonarqube
   ansible.builtin.service:
