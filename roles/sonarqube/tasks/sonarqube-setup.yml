@@ -72,12 +72,7 @@
     regexp: '^#RUN_AS_USER='
     state: present
     line: RUN_AS_USER=sonar
-  notify: Reload Sonarqube server daemon
 
-# To make sure the handler immmediately reloads systemd
-- name: Flush handlers
-  meta: flush_handlers
-    
 
 - name: create a service file
   ansible.builtin.template:
