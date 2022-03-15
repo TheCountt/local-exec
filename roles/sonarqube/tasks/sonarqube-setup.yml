@@ -59,9 +59,7 @@
     recurse: yes
     owner: sonar
     group: sonar
-
   
-    
 - name: Configuring the SonarQube Server
   ansible.builtin.template:
     src: templates/sonar.properties.j2
@@ -75,6 +73,7 @@
     state: present
     line: RUN_AS_USER=sonar
   notify: Reload Sonarqube server daemon
+
 
 - name: Flush handlers
   meta: flush_handlers
