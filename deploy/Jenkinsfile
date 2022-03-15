@@ -33,7 +33,7 @@ pipeline {
 
       stage('Execute Ansibe playbook') {
         steps {
-           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.ini', playbook: 'playbooks/site.yml', skippedTags: 'jenkins, artifactory'
+           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.ini', playbook: 'playbooks/site.yml'
          }
       }
 
