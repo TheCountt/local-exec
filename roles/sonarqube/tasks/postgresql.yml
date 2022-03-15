@@ -22,7 +22,6 @@
     state: started
     enabled: yes
      
-
 - name: create password for user postgres
   ansible.builtin.user:
     name: postgres
