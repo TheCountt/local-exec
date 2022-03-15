@@ -11,7 +11,8 @@ LimitNOFILE=65536
 LimitNPROC=4096
 User=sonar
 Group=sonar
-Restart=always
+Restart=on-abort
+TimeoutSec=600
 
 [Install]
 WantedBy=multi-user.target
