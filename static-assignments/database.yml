@@ -1,0 +1,6 @@
+---
+- hosts: mongodb
+  become: true
+  tags: mongodb
+  roles:
+     - mongodb

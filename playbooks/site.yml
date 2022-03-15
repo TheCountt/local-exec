@@ -7,3 +7,10 @@
 
 - name: sonarqube assignment
   import_playbook: ../static-assignments/sonarqube.yml
+
+# - name: webserver assignment
+#   import_playbook: ../static-assignments/webserver.yml
+
+# - name: database asssignment
+#   import_playbook: ../static-assignments/database.yml
+
