@@ -52,7 +52,7 @@
     dest: /opt/sonarqube/conf/sonar.properties
     force: yes
 
-- name: Update user in sonar.sh filee
+- name: Update user in sonar.sh file
   ansible.builtin.lineinfile:
     path: /opt/sonarqube/bin/linux-x86-64/sonar.sh
     regexp: '^#RUN_AS_USER='

@@ -31,13 +31,13 @@
 
 - name: Create a new database sonarqubedb
   become_user: postgres
-  postgresql_db:
+  community.postgresql.postgresql_db:
     name: sonarqube
     encoding: UTF-8
 
 - name: Create user sonarqube
   become_user: postgres
-  postgresql_user:
+  community.postgresql.postgresql_user:
     db: sonarqube
     name: sonar
     password: sonar
