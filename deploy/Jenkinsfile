@@ -18,30 +18,44 @@ pipeline {
           }
         }
 
-      stage('Checkout SCM') {
+        stage('Checkout SCM') {
          steps{
             git branch: 'master', credentialsId: 'git:a78d564b7e3823083a9092b5e9c7848dcd701c99dd20ae466e9a20691bf39f8e', url: 'https://TheCountt@bitbucket.org/thecountt/ci-cd.git'
-         }
+          }
        }
 
-      stage('Prepare Ansible For Execution') {
-        steps {
-          sh 'echo ${WORKSPACE}' 
-          sh 'sed -i "4 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/ansible.cfg'  
-        }
-     }
+        stage('Prepare Ansible For Execution') {
+         steps {
+           sh 'echo ${WORKSPACE}' 
+           sh 'sed -i "4 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/ansible.cfg'  
+         }
+       }
 
       stage('Execute Ansibe playbook') {
         steps {
            ansiblePlaybook become: true, colorized: true, credentialsId: 'private-ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.ini', playbook: 'playbooks/site.yml'
-         }
-      }
+          }
+        }
 
       stage('Clean Workspace after build'){
         steps{
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
-        }
+         }
+       }
+
+      stage('SonarQube Quality Gate') {
+        when { branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"}
+          environment {
+            scannerHome = tool 'SonarQubeScanner'
+         }
+        steps {
+          withSonarQubeEnv('sonarqube') {
+              sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+          }
+             timeout(time: 1, unit: 'MINUTES') {
+                 waitForQualityGate abortPipeline: true
+               }
+          }
       }
    }
-
 }
