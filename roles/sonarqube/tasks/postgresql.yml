@@ -28,10 +28,6 @@
     group: postgres
     password: "{{ password | password_hash('sha512') }}"
 
-- name: print password
-  ansible.builtin.debug:
-    msg: password.stdout
-
 - name: Create a new database sonarqubedb
   become_user: postgres
   postgresql_db:
