@@ -27,7 +27,7 @@
     name: postgres
     group: postgres
     password: "{{ password | password_hash('sha512') }}"
-    register: password.stdout
+  register: password.stdout
 
 - name: print password
   ansible.builtin.debug:
