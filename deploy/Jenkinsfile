@@ -5,6 +5,11 @@ pipeline {
       ANSIBLE_CONFIG="${WORKSPACE}/ansible.cfg"
     }
 
+    options {
+  timestamps ()
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '4')
+  }
+
   parameters {
        string(name: 'inventory_file', defaultValue: '${inventory_file}', description: 'selecting the environment')
     }
