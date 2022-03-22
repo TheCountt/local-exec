@@ -25,7 +25,7 @@ pipeline {
 
         stage('Checkout SCM') {
          steps{
-            git branch: 'master', credentialsId: 'git:a78d564b7e3823083a9092b5e9c7848dcd701c99dd20ae466e9a20691bf39f8e', url: 'https://TheCountt@bitbucket.org/thecountt/ci-cd.git'
+            git branch: 'master', credentialsId: 'bitbucket', url: 'https://TheCountt@bitbucket.org/thecountt/anpbucket-ci-cd.git'
           }
        }
 
