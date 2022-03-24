@@ -12,7 +12,7 @@
 - name: install java 11
   ansible.builtin.apt:
    name: openjdk-11-jre
-   state: present
+   state: absent
 
 # - name: install java 11 and 17 versions
 #   ansible.builtin.apt:
@@ -31,12 +31,12 @@
 #     - { name: java, path: /usr/lib/jvm/java-11-openjdk-amd64/bin/java }
 #     - { name: javac, path: /usr/lib/jvm/java-11-openjdk-amd64/bin/javac}
 
-# - name: install java 17
-#   ansible.builtin.apt: 
-#    name: oracle-java17-installer
-#    state: present
-#    update_cache: yes
-#    force_apt_get: yes
+- name: install java 17
+  ansible.builtin.apt: 
+   name: oracle-java17-installer
+   state: present
+   update_cache: yes
+   force_apt_get: yes
 
 - name: install jenkins apt repository key
   apt_key: 
