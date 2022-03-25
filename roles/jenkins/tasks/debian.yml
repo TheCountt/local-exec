@@ -3,16 +3,16 @@
   ansible.builtin.apt:
    update_cache: yes
 
-- name: Add java stable repository from PPA
-  ansible.builtin.apt_repository:
-    repo: 'ppa:linuxuprising/java'
-    state: present
-    update_cache: yes
-
 - name: install java 11
   ansible.builtin.apt:
    name: openjdk-11-jre
    state: absent
+
+# - name: Add java stable repository from PPA
+#   ansible.builtin.apt_repository:
+#     repo: 'ppa:linuxuprising/java'
+#     state: present
+#     update_cache: yes
 
 # - name: install java 11 and 17 versions
 #   ansible.builtin.apt:
