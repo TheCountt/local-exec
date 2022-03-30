@@ -5,8 +5,11 @@
 
 - name: install java 11
   ansible.builtin.apt:
-   name: openjdk-11-jre
-   state: absent
+   name: "{{ item }}"
+   state: present
+  loop: 
+    - fontconfig
+    - openjdk-11-jre
 
 # - name: Add java stable repository from PPA
 #   ansible.builtin.apt_repository:
@@ -40,12 +43,12 @@
 
 - name: install jenkins apt repository key
   apt_key: 
-   url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+   url: https://pkg.jenkins.io/debian/jenkins.io.key
    state: present
 
 - name: ensure the repository is installed
   apt_repository: 
-   repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+   repo: 'deb https://pkg.jenkins.io/debian binary/'
    state: present
   
 - name: install jenkins
