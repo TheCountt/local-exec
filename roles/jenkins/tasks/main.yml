@@ -7,7 +7,7 @@
   include_tasks: redhat.yml
   when: ansible_os_family == 'Redhat'
 
-name: install ansible
+- name: install ansible
   ansible.builtin.apt: 
    name: ansible
    state: present
