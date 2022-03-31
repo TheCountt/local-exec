@@ -32,6 +32,15 @@
     comment: Name of user to add to group docker
     group: docker
 
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /home/ubuntu/.docker
+    owner: ubuntu
+    group: ubuntu
+    recurse: yes
+    mode: '0666'
+
+
 - name: Start docker
   become: true
   ansible.builtin.systemd: 
