@@ -40,6 +40,11 @@
     recurse: yes
     mode: '0666'
 
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /var/run/docker.sock
+    mode: '0666'
+
 
 - name: Start docker
   become: true
