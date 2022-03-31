@@ -13,6 +13,7 @@
   args:
    creates: community.txt
 
+# Install and Configure Docker on CI server for Containerization in Pipeline
 - name: install docker
   ansible.builtin.apt:
    name: docker.io
@@ -20,3 +21,21 @@
    update_cache: yes
 
 
+- name: Create group "docker"
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add current user to group 'docker'
+  ansible.builtin.user:
+    name: $USER
+    comment: Name of current user
+    group: docker
+
+- name: Start docker
+  become: true
+  ansible.builtin.systemd: 
+    name: docker
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
