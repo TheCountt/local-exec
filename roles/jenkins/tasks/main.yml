@@ -27,7 +27,6 @@
     state: present
 
 - name: Add current user to group 'docker'
-  become_user: ubuntu
   ansible.builtin.user:
     name: ubuntu
     comment: Name of user to add to group docker
