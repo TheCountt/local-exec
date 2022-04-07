@@ -3,13 +3,27 @@
   ansible.builtin.apt:
    update_cache: yes
 
-- name: install java 11
+
+# Install and Configure these softwares on CI server for Containerization in Pipeline
+- name: install java 11 and other packages
   ansible.builtin.apt:
    name: "{{ item }}"
    state: present
   loop: 
     - fontconfig
     - openjdk-11-jre
+    - docker.io
+    - nodejs
+    - npm
+  update_cache: yes
+
+
+# Install and Configure Docker on CI server for Containerization in Pipeline
+# - name: install docker
+#   ansible.builtin.apt:
+#    name: docker.io
+#    state: present
+#    update_cache: yes
 
 # - name: Add java stable repository from PPA
 #   ansible.builtin.apt_repository:
@@ -65,3 +79,4 @@
    enabled: true
    daemon_reload: yes
   notify: Restart jenkins server
+

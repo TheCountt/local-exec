@@ -13,13 +13,6 @@
   args:
    creates: community.txt
 
-# Install and Configure Docker on CI server for Containerization in Pipeline
-- name: install docker
-  ansible.builtin.apt:
-   name: docker.io
-   state: present
-   update_cache: yes
-
 
 - name: Create group "docker"
   ansible.builtin.group:
