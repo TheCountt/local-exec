@@ -16,6 +16,7 @@
     - docker.io
     - nodejs
     - npm
+    - docker-compose
 
 
 # Install and Configure Docker on CI server for Containerization in Pipeline
