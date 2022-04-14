@@ -46,3 +46,11 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
+
+
+
+- name: install anchore engine
+  shell: >
+   curl https://engine.anchore.io/docs/quickstart/docker-compose.yaml > docker-compose.yaml
+  args:
+   creates: docker-compose.yaml
