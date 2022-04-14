@@ -49,8 +49,14 @@
 
 
 
-- name: install anchore engine
-  shell: >
-   curl https://engine.anchore.io/docs/quickstart/docker-compose.yaml > docker-compose.yaml
-  args:
-   creates: docker-compose.yaml
+# - name: install anchore engine
+#   shell: >
+#    curl https://engine.anchore.io/docs/quickstart/docker-compose.yaml > docker-compose.yaml
+#   args:
+#    creates: docker-compose.yaml
+
+- name: get anchore engine
+  ansible.builtin.get_url:
+    url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
+    dest: docker-commpose.yaml
+    mode: 0755
