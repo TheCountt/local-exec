@@ -1,0 +1,7 @@
+---
+collections:
+  - name: community.postgres
+    type: galaxy
+
+  - name: community.docker
+    type: galaxy

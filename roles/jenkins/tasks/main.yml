@@ -7,11 +7,17 @@
   include_tasks: redhat.yml
   when: ansible_os_family == 'Redhat'
 
-- name: install community module
-  shell: >
-   ansible-galaxy collection install community.postgresql
-  args:
-   creates: community.txt
+# - name: install community module
+#   shell: >
+#    ansible-galaxy collection install community.postgresql
+#   args:
+#    creates: community.txt
+
+- name: Install collections
+  community.general.ansible_galaxy_install:
+    type: collection
+    requirements_file: requirements.yml
+
 
 
 - name: Create group "docker"
@@ -60,3 +66,8 @@
     url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
     dest: $HOME/docker-compose.yaml
     mode: 0755
+
+- name: start anchore engine
+  community.docker.docker_compose:
+    project_src: $HOME/spring-petclinic
+    state: present
