@@ -7,11 +7,6 @@
   include_tasks: redhat.yml
   when: ansible_os_family == 'Redhat'
 
-# - name: install community module
-#   shell: >
-#    ansible-galaxy collection install community.postgresql
-#   args:
-#    creates: community.txt
 
 - name: Install needed community modules
   community.general.ansible_galaxy_install:
@@ -54,14 +49,7 @@
     enabled: yes
     daemon_reload: yes
 
-
-
-# - name: install anchore engine
-#   shell: >
-#    curl https://engine.anchore.io/docs/quickstart/docker-compose.yaml > docker-compose.yaml
-#   args:
-#    creates: docker-compose.yaml
-
+# Anchore Engine for image scanning
 - name: get anchore engine
   ansible.builtin.get_url:
     url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
