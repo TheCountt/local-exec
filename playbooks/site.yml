@@ -1,16 +1,16 @@
 ---
 - name: jenkins assignment
-  import_playbook: ../static-assignments/jenkins.yml
+  ansible.builtin.import_playbook: ../static-assignments/jenkins.yml
 
 # - name: artifactory assignment
-#   import_playbook: ../static-assignments/artifactory.yml
+#   ansible.builtin.import_playbook: ../static-assignments/artifactory.yml
 
 - name: sonarqube assignment
-  import_playbook: ../static-assignments/sonarqube.yml
+  ansible.builtin.import_playbook: ../static-assignments/sonarqube.yml
 
 # - name: webserver assignment
-#   import_playbook: ../static-assignments/webserver.yml
+#   ansible.builtin.import_playbook: ../static-assignments/webserver.yml
 
 # - name: database asssignment
-#   import_playbook: ../static-assignments/database.yml
+#   ansible.builtin.import_playbook: ../static-assignments/database.yml
 
