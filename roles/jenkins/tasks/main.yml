@@ -31,6 +31,7 @@
     comment: Name of user to add to group docker
     group: docker
 
+
 - name: Change file ownership, group and permissions
   ansible.builtin.file:
     path: /home/ubuntu/.docker
