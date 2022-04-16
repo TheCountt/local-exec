@@ -24,6 +24,7 @@
     name: docker
     state: present
 
+
 - name: Add user to group 'docker'
   ansible.builtin.user:
     name: ubuntu
