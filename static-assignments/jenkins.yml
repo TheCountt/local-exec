@@ -1,6 +1,5 @@
 ---
 - hosts: jenkins
-  become: true
   tags: jenkins
   roles:
      - jenkins
