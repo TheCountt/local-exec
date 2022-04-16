@@ -70,5 +70,5 @@
 
 - name: start anchore engine
   community.docker.docker_compose:
-    project_src: $HOME/spring-petclinic
+    project_src: /home/ubuntu/spring-petclinic
     state: present
