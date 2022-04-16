@@ -14,7 +14,7 @@
 #    creates: community.txt
 
 - name: Install collections
-  general.ansible_galaxy_install:
+  community.general.ansible_galaxy_install:
     type: collection
     requirements_file: requirements.yml
 
