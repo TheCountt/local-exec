@@ -16,7 +16,7 @@
 - name: Install collections
   community.general.ansible_galaxy_install:
     type: collection
-    requirements_file: requirements.yml
+    requirements_file: $HOME/anpbucket-ci-cd/requirements.yml
 
 
 
