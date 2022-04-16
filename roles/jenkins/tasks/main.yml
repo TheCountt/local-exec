@@ -13,11 +13,10 @@
 #   args:
 #    creates: community.txt
 
-- name: Install collections
+- name: Install needed community modules
   community.general.ansible_galaxy_install:
     type: collection
     requirements_file: $HOME/anpbucket-ci-cd/requirements.yml
-
 
 
 - name: Create group "docker"
