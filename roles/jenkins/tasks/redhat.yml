@@ -55,3 +55,36 @@
 #     enabled: yes
 #     daemon_reload: yes
     
+# - name: Create group "docker"
+#   ansible.builtin.group:
+#     name: docker
+#     state: present
+
+
+# - name: Add user to group 'docker'
+#   ansible.builtin.user:
+#     name: ec2-user
+#     comment: Name of user to add to group docker
+#     group: docker
+
+
+# - name: Change file ownership, group and permissions
+#   ansible.builtin.file:
+#     path: ./.docker
+#     owner: ec2-user
+#     group: ec2-user
+#     recurse: yes
+#     mode: '0666'
+
+# - name: Change file ownership, group and permissions
+#   ansible.builtin.file:
+#     path: /var/run/docker.sock
+#     mode: '0666'
+
+# - name: Start docker
+#   become: true
+#   ansible.builtin.systemd: 
+#     name: docker
+#     state: restarted
+#     enabled: yes
+#     daemon_reload: yes

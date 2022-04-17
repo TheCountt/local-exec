@@ -7,13 +7,12 @@
   include_tasks: redhat.yml
   when: ansible_os_family == 'Redhat'
 
+- name: Install needed community modules
+  community.general.ansible_galaxy_install:
+    type: collection
+    requirements_file: ./anpbucket-ci-cd/requirements.yml
 
-# - name: Install needed community modules
-#   community.general.ansible_galaxy_install:
-#     type: collection
-#     requirements_file: ./anpbucket-ci-cd/requirements.yml
-
-#  Uncomment this blocks of code if there is difficulty in running docker as a non-privileged user
+#  Re-visit code to configure so as to go with any OS user
 ####################################
 # - name: Create group "docker"
 #   ansible.builtin.group:
@@ -40,15 +39,16 @@
 #   ansible.builtin.file:
 #     path: /var/run/docker.sock
 #     mode: '0666'
-###################################################
 
-- name: Start docker
-  become: true
-  ansible.builtin.systemd: 
-    name: docker
-    state: restarted
-    enabled: yes
-    daemon_reload: yes
+# - name: Start docker
+#   become: true
+#   ansible.builtin.systemd: 
+#     name: docker
+#     state: restarted
+#     enabled: yes
+#     daemon_reload: yes
+###########################################################################
+
 
 # Anchore Engine for image scanning
 - name: get anchore engine

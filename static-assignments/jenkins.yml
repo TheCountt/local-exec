@@ -1,7 +1,6 @@
 ---
 - hosts: jenkins
   become: true
-  # become_user: $USER
   tags: jenkins
   roles:
      - jenkins
