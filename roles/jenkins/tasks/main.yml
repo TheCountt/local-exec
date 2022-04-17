@@ -8,10 +8,10 @@
   when: ansible_os_family == 'Redhat'
 
 
-- name: Install needed community modules
-  community.general.ansible_galaxy_install:
-    type: collection
-    requirements_file: ./anpbucket-ci-cd/requirements.yml
+# - name: Install needed community modules
+#   community.general.ansible_galaxy_install:
+#     type: collection
+#     requirements_file: ./anpbucket-ci-cd/requirements.yml
 
 #  Uncomment this blocks of code if there is difficulty in running docker as a non-privileged user
 ####################################
