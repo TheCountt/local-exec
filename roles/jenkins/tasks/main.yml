@@ -29,7 +29,7 @@
 
 - name: Change file ownership, group and permissions
   ansible.builtin.file:
-    path: ~/.docker
+    path: ./.docker
     owner: $USER
     group: $USER
     recurse: yes
@@ -53,7 +53,7 @@
 - name: get anchore engine
   ansible.builtin.get_url:
     url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
-    dest: ~/docker-compose.yaml
+    dest: ./docker-compose.yaml
     mode: 0755
 
 - name: start anchore engine
