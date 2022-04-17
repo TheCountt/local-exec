@@ -28,9 +28,9 @@ Note down the steps and automate with Ansible.
 -	Git (pre-installed in Jenkins)
 -	Sonarqube
 -	Junit (preinstalled in Jenkins)
--   Docker
--   Cloudbees Docker build and Push
--   Anchore
+-       Docker
+-       Cloudbees Docker build and Push
+-       Anchore
 
 **Credentials to create in Jenkins**
 -   bitbucket credentials
