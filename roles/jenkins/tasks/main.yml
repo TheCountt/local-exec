@@ -13,7 +13,7 @@
     type: collection
     requirements_file: ./anpbucket-ci-cd/requirements.yml
 
-#  Refactor this block of code so that we do not need this
+#  Uncomment this blocks of code if there is difficulty in running docker as a non-privileged user
 ####################################
 # - name: Create group "docker"
 #   ansible.builtin.group:
