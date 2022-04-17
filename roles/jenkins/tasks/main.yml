@@ -11,7 +11,7 @@
 - name: Install needed community modules
   community.general.ansible_galaxy_install:
     type: collection
-    requirements_file: ~/anpbucket-ci-cd/requirements.yml
+    requirements_file: ./anpbucket-ci-cd/requirements.yml
 
 
 - name: Create group "docker"
@@ -58,5 +58,5 @@
 
 - name: start anchore engine
   community.docker.docker_compose:
-    project_src: ~/
+    project_src: ./
     state: present
