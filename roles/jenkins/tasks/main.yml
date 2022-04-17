@@ -15,31 +15,31 @@
 
 #  Refactor this block of code so that we do not need this
 ####################################
-- name: Create group "docker"
-  ansible.builtin.group:
-    name: docker
-    state: present
+# - name: Create group "docker"
+#   ansible.builtin.group:
+#     name: docker
+#     state: present
 
 
-- name: Add user to group 'docker'
-  ansible.builtin.user:
-    name: ubuntu
-    comment: Name of user to add to group docker
-    group: docker
+# - name: Add user to group 'docker'
+#   ansible.builtin.user:
+#     name: ubuntu
+#     comment: Name of user to add to group docker
+#     group: docker
 
 
-- name: Change file ownership, group and permissions
-  ansible.builtin.file:
-    path: ./.docker
-    owner: ubuntu
-    group: ubuntu
-    recurse: yes
-    mode: '0666'
+# - name: Change file ownership, group and permissions
+#   ansible.builtin.file:
+#     path: ./.docker
+#     owner: ubuntu
+#     group: ubuntu
+#     recurse: yes
+#     mode: '0666'
 
-- name: Change file ownership, group and permissions
-  ansible.builtin.file:
-    path: /var/run/docker.sock
-    mode: '0666'
+# - name: Change file ownership, group and permissions
+#   ansible.builtin.file:
+#     path: /var/run/docker.sock
+#     mode: '0666'
 ###################################################
 
 - name: Start docker
