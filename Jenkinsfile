@@ -12,7 +12,6 @@ pipeline {
 
   parameters {
        string(name: 'inventory', defaultValue: 'ci.ini', description: 'selecting the environment')
-       string(name: 'tags', defaultValue: 'Specify the tag to limit the ansible execution')
     }
 
   stages{

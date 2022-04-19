@@ -7,13 +7,13 @@
   include_tasks: redhat.yml
   when: ansible_os_family == 'Redhat'
 
+# Community modules needed
 - name: Install needed community modules
   community.general.ansible_galaxy_install:
     type: collection
     requirements_file: ./anpbucket-ci-cd/requirements.yml
 
-#  Re-visit code to configure so as to go with any OS user
-####################################
+# docker configuration for non-root user
 - name: Create group "docker"
   ansible.builtin.group:
     name: docker
@@ -47,8 +47,6 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
-###########################################################################
-
 
 # Anchore Engine for image scanning
 - name: get anchore engine
