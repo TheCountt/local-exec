@@ -22,7 +22,7 @@
 
 - name: Add user to group 'docker'
   ansible.builtin.user:
-    name: $USER
+    name: jenkins
     comment: Name of user to add to group docker
     group: docker
 
@@ -30,8 +30,8 @@
 - name: Change file ownership, group and permissions
   ansible.builtin.file:
     path: ./.docker
-    owner: $USER
-    group: $USER
+    owner: jenkins
+    group: jenkins
     recurse: yes
     mode: '0666'
 
