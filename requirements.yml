@@ -5,3 +5,6 @@ collections:
 
   - name: community.docker
     type: galaxy
+
+  - name: community.mongodb
+    type: galaxy

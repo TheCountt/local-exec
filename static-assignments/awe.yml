@@ -1,0 +1,6 @@
+---
+- hosts: awe
+  become: true
+  tags: awe
+  roles:
+     - awe
