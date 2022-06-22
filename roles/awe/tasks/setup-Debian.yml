@@ -11,7 +11,8 @@
 - name: install NPM
   shell: npm i
   args:
-    chdir: /home/ubuntu
+     executable: /bin/bash
+     chdir: /home/ubuntu
 
 - name: Install needed dependency modules globally
   become: true
