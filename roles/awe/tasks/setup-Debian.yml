@@ -8,14 +8,14 @@
 
 - import_tasks: nvm.yml
 
-- name: install NPM
-  shell: >
-   npm i
+# - name: install NPM
+#   shell: >
+#    npm i
 
 - name: Install needed dependency modules globally
   become: true
   npm:
-    executable:  ~/.nvm/nvm.sh
+    executable:  /home/ubuntu/.nvm/nvm.sh
     name: "{{item}}"
     global: yes
   loop: 
