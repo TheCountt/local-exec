@@ -11,7 +11,7 @@
 - name: Install needed dependency modules globally
   become: true
   npm:
-    executable:  ~/.nvm/nvm.sh
+    executable: /root/.nvm/versions/node/v14.17.1/bin/npm
     name: "{{item}}"
     global: yes
   loop: 
