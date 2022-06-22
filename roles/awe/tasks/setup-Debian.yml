@@ -8,6 +8,11 @@
 
 - import_tasks: nvm.yml
 
+- name: install NPM
+  shell: npm i
+  args:
+    chdir: /home/ubuntu
+
 - name: Install needed dependency modules globally
   become: true
   npm:
