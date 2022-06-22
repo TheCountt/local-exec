@@ -18,19 +18,20 @@
         chdir: "$HOME"
         creates: "$HOME/.nvm/nvm.sh"
 
-    - name: Setup .bashrc
-      ansible.builtin.lineinfile:
-        path: ~/.profile
-        line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
-        create: yes
+    # - name: Setup .bashrc
+    #   ansible.builtin.lineinfile:
+    #     path: ~/.profile
+    #     line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
+    #     create: yes
+    
+
 
     - name: Install node
       ansible.builtin.shell: >
-        nvm install {{item}}
+         source ~/.nvm/nvm.sh && nvm install {{item}}
       args:
         executable: /bin/bash
         chdir: "$HOME"
         creates: "$HOME/.nvm/versions/node/v{{item}}"
       loop:
         - 14.17.1
-

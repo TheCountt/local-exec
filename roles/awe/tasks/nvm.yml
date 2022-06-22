@@ -60,3 +60,15 @@
         creates: "$HOME/.nvm/versions/node/v{{item}}"
       loop:
         - 14.17.1
+
+
+
+  # - name: NVM | nvm | add nvm line 1 to ~/.bashrc
+#   lineinfile:
+#     path: ~/.bashrc
+#     line: export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+
+# - name: NVM | nvm | add nvm line 2 to ~/.bashrc
+#   lineinfile:
+#     path: ~/.bashrc
+#     line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
