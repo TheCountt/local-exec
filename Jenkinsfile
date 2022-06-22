@@ -11,7 +11,7 @@ pipeline {
   }
 
   parameters {
-       string(name: 'inventory', defaultValue: '', description: 'selecting the environment')
+       string(name: 'inventory', defaultValue: '${defaultValue}', description: 'selecting the environment')
     }
 
   stages{
