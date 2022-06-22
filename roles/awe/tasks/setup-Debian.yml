@@ -9,8 +9,9 @@
 - import_tasks: nvm.yml
 
 - name: Install needed dependency modules globally
+  become: true
   npm:
-    executable:  $HOME/.nvm/versions/node/v14.17.1/bin/npm
+    executable:  ~/.nvm/nvm.sh
     name: "{{item}}"
     global: yes
   loop: 
