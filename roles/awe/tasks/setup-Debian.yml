@@ -6,11 +6,11 @@
 #     update_cache: yes
 #   # become: true
 
-- include: nvm.yml
+- import_tasks: nvm.yml
 
 - name: Install needed dependency modules globally.
   npm:
-    executable: /bin/bash
+    executable:  ~/.nvm/nvm.sh
     name: "{{item}}"
     global: yes
   loop: 
