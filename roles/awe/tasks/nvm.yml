@@ -108,10 +108,10 @@
 
  - name: Install node
    ansible.builtin.shell: >
-     source /home/ubuntu/nvm.sh && nvm install {{item}}
-     args:
-       executable: /bin/bash
-       chdir: "/home/ubuntu"
-       creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
-     loop:
+    source /home/ubuntu/nvm.sh && nvm install {{item}}
+   args:
+    executable: /bin/bash
+    chdir: "/home/ubuntu"
+    creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
+   loop:
       - 14.17.1
