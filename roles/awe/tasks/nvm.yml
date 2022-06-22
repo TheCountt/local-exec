@@ -101,7 +101,7 @@
 
  - name: NVM | nvm | add nvm line 2 to ~/.bashrc
    lineinfile:
-     path: "home/ubuntu/.bashrc"
+     path: "/home/ubuntu/.bashrc"
      line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
 
 
