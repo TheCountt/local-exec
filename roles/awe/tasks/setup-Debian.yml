@@ -8,10 +8,6 @@
 
 - import_tasks: nvm.yml
 
-# - name: install NPM
-#   shell: >
-#    npm i
-
 - name: Install needed dependency modules globally
   become: true
   npm:
