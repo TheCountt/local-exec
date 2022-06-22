@@ -9,10 +9,8 @@
 - import_tasks: nvm.yml
 
 - name: install NPM
-  shell: npm i
-  args:
-     executable: /bin/bash
-     chdir: /home/ubuntu
+  shell: >
+   npm i
 
 - name: Install needed dependency modules globally
   become: true
