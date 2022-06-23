@@ -10,6 +10,7 @@
 
 - name: Install needed dependency modules globally
   become: true
+  executable: /bin/bash
   npm:
     name: "{{item}}"
     global: yes
