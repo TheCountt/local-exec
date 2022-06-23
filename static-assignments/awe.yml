@@ -1,5 +1,6 @@
 ---
 - hosts: awe
+  become_user: ubuntu
   become: true
   tags: awe
   roles:
