@@ -18,6 +18,7 @@
 #     - pm2
 
 - name: Install needed dependency modules globally
+  become: true
   shell: >
     npm install dotenv -g
   args:

@@ -2,6 +2,8 @@
 - name: NVM | nvm | create .nvm directory
   file:
     path: "/usr/local/nvm"
+    group: ubuntu
+    owner: ubuntu
     recurse: yes
     state: directory
 
