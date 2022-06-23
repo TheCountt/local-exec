@@ -4,7 +4,6 @@
     path: "/usr/local/nvm"
     recurse: yes
     state: directory
-  when: not nvm_stat.stat.exists
 
 - name: "nvm"
   shell: >
