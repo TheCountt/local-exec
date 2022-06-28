@@ -204,7 +204,7 @@
    
   - name: download nvm script
     get_url:
-      dest: "/usr/local/nvm"
+      dest: "$HOME"
       group: ubuntu
       owner: ubuntu
       mode: 0755
