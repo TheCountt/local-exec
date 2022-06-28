@@ -193,14 +193,14 @@
 ######################################################################
 
 
-  - name: create .nvm directory
-    file:
-      path: "/usr/local/nvm"
-      group: $USER
-      owner: $USER
-      mode: 0755
-      recurse: yes
-      state: directory
+  # - name: create .nvm directory
+  #   file:
+  #     path: "/usr/local/nvm"
+  #     group: $USER
+  #     owner: $USER
+  #     mode: 0755
+  #     recurse: yes
+  #     state: directory
    
   - name: download nvm script
     get_url:
