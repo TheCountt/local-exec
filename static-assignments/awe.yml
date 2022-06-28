@@ -4,6 +4,7 @@
   become_user: ubuntu
   environment: 
     HOME: /home/ubuntu
+    USER: ubuntu
   tags: awe
   roles:
      - awe

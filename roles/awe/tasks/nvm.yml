@@ -196,7 +196,8 @@
   - name: create .nvm directory
     file:
       path: "/usr/local/nvm"
-      
+      group: $USER
+      owner: $USER
       recurse: yes
       state: directory
    
