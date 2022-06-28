@@ -108,6 +108,7 @@
      line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 
  - name: Install node
+   become_user: root
    ansible.builtin.shell: >
      source /home/ubuntu/.bashrc && nvm install {{item}}
    args:
