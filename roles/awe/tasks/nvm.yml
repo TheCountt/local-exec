@@ -118,7 +118,7 @@
    ansible.builtin.shell: >
      nvm install {{item}}
    args:
-    executable: /home/ubuntu/
+    executable: /bin/bash
 #     chdir: "/home/ubuntu"
 #     creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
    loop:
