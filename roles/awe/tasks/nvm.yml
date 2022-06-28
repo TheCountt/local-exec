@@ -110,7 +110,7 @@
  - name: Install node
    become_user: root
    ansible.builtin.shell: >
-     source /home/ubuntu/.bashrc && nvm install {{item}}
+     source .bashrc && nvm install {{item}}
    args:
     executable: /home/ubuntu/
     chdir: "/home/ubuntu"
