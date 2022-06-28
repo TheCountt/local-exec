@@ -109,7 +109,7 @@
 
  - name: Install node
    ansible.builtin.shell: >
-     source ~/.bashrc && nvm install {{item}}
+     source /home/ubuntu/.bashrc && nvm install {{item}}
    args:
     executable: /home/ubuntu/
     chdir: "/home/ubuntu"
