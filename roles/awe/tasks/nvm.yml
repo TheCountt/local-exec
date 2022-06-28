@@ -145,95 +145,48 @@
 #       - 14.17.1
   
 ##############################################################################################3
-# - name: Setup Node
-#   become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
-#   block:
-#     - name: Install nvm
-#       ansible.builtin.shell: >
-#         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-#       args:
-#         executable: /bin/bash
-#         chdir: "$HOME"
-#         creates: "$HOME/.nvm/nvm.sh"
+- name: Setup Node
+  become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
+  block:
+    - name: Install nvm
+      ansible.builtin.shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+      args:
+        executable: /bin/bash
+        chdir: "$HOME"
+        creates: "$HOME/.nvm/nvm.sh"
 
-#     # - name: Setup .profile
-#     #   ansible.builtin.lineinfile:
-#     #     path: ~/.profile
-#     #     line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
-#     #     create: yes
+    - name: Setup .profile
+      ansible.builtin.lineinfile:
+        path: ~/.profile
+        line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
+        create: yes
 
-#     - name: add nvm line 1 to ~/.bashrc
-#       lineinfile:
-#        path: $HOME/.bashrc
-#        line: NVM_DIR="$HOME/.nvm"
+    - name: add nvm line 1 to ~/.bashrc
+      lineinfile:
+       path: $HOME/.bashrc
+       line: NVM_DIR="$HOME/.nvm"
     
 
-#     - name: add nvm line 2 to ~/.bashrc
-#       lineinfile:
-#        path: "$HOME/.bashrc"
-#        line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+    - name: add nvm line 2 to ~/.bashrc
+      lineinfile:
+       path: "$HOME/.bashrc"
+       line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
 
-#     - name: add nvm line 3 to ~/.bashrc
-#       lineinfile:
-#        path: "$HOME/.bashrc"
-#        line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
+    - name: add nvm line 3 to ~/.bashrc
+      lineinfile:
+       path: "$HOME/.bashrc"
+       line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
     
     
-#     - name: Install node
-#       ansible.builtin.shell: |
-#        source $HOME/.nvm/nvm.sh && nvm install {{item}}
-#       args:
-#         executable: /bin/bash
-#         chdir: "$HOME"
-#         creates: "$HOME/.nvm/versions/node/v{{item}}"
-#       loop:
-#         - 14.17.1
-
-
-######################################################################
-
-
-  # - name: create .nvm directory
-  #   file:
-  #     path: "/usr/local/nvm"
-  #     group: $USER
-  #     owner: $USER
-  #     mode: 0755
-  #     recurse: yes
-  #     state: directory
-   
-  - name: download nvm script
-    get_url:
-      dest: "$HOME"
-      group: ubuntu
-      owner: ubuntu
-      mode: 0755
-      url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh"
-
-  - name: add nvm line 1 to ~/.bashrc
-    lineinfile:
-     path: $HOME/.bashrc
-     line: NVM_DIR="$HOME/.nvm"
-    
-
-  - name: add nvm line 2 to ~/.bashrc
-    lineinfile:
-      path: "$HOME/.bashrc"
-      line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
-
-  - name: add nvm line 3 to ~/.bashrc
-    lineinfile:
-      path: "$HOME/.bashrc"
-      line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
-
-  - name: Install node
-    ansible.builtin.shell: |
-       source $HOME/.bashrc && nvm install {{item}}
-    args:
+    - name: Install node
+      ansible.builtin.shell: |
+       source $HOME/.nvm/nvm.sh && nvm install {{item}}
+      args:
         executable: /bin/bash
         chdir: "$HOME"
         creates: "$HOME/.nvm/versions/node/v{{item}}"
-    loop:
+      loop:
         - 14.17.1
 
 
