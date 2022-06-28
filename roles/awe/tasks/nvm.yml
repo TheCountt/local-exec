@@ -97,28 +97,28 @@
     line: NVM_DIR="/home/ubuntu/.nvm"
     
 
- - name: add nvm line 2 to ~/.bashrc
-   lineinfile:
-     path: "/home/ubuntu/.bashrc"
-     line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+#  - name: add nvm line 2 to ~/.bashrc
+#    lineinfile:
+#      path: "/home/ubuntu/.bashrc"
+#      line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
 
- - name: add nvm line 3 to ~/.bashrc
-   lineinfile:
-     path: "/home/ubuntu/.bashrc"
-     line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
-
- - name: Install node
-   ansible.builtin.shell: >
-     source /home/ubuntu/.bashrc
-   args:
-     executable: /home/
+#  - name: add nvm line 3 to ~/.bashrc
+#    lineinfile:
+#      path: "/home/ubuntu/.bashrc"
+#      line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 
 #  - name: Install node
-#    become: true
 #    ansible.builtin.shell: >
-#      source .bashrc && nvm install {{item}}
+#      source /home/ubuntu/.bashrc
 #    args:
-#     executable: /home/ubuntu/
+#      executable: /home/
+
+ - name: Install node
+   become: true
+   ansible.builtin.shell: >
+     nvm install {{item}}
+   args:
+    executable: /home/ubuntu/
 #     chdir: "/home/ubuntu"
 #     creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
 #    loop:
