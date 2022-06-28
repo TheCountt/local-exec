@@ -112,34 +112,63 @@
 #      source /home/ubuntu/.bashrc
 #    args:
 #      executable: /home/
+####################################################################################
+#  - name: "nvm"
+#    shell: >
+#     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+#    args:
+#     # executable: /bin/bash
+#     chdir: "{{ ansible_env.HOME }}"
+#     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
- - name: "nvm"
-   shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-   args:
-    # executable: /bin/bash
-    chdir: "{{ ansible_env.HOME }}"
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
- - name: Copy to home directory
-   template:
-        src: "./templates/{{ item }}.j2"
-        dest: "/home/ubuntu/{{ item }}"
-        mode: +rwx
-   loop:
-        - nvm-export.sh
+#  - name: Copy to home directory
+#    template:
+#         src: "./templates/{{ item }}.j2"
+#         dest: "/home/ubuntu/{{ item }}"
+#         mode: +rwx
+#    loop:
+#         - nvm-export.sh
  
- - name: export nvm script
-   ansible.builtin.shell: ./nvm-export.sh
+#  - name: export nvm script
+#    ansible.builtin.shell: ./nvm-export.sh
 
- - name: Install node
-   become: true
-   ansible.builtin.shell: >
-     nvm install {{item}}
-   args:
-    executable: /bin/bash
-# #     chdir: "/home/ubuntu"
-# #     creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
-   loop:
-      - 14.17.1
+#  - name: Install node
+#    become: true
+#    ansible.builtin.shell: >
+#      nvm install {{item}}
+#    args:
+#     executable: /bin/bash
+# # #     chdir: "/home/ubuntu"
+# # #     creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
+#    loop:
+#       - 14.17.1
   
+
+- name: Setup Node
+  become: true
+  become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
+  become_user: runner
+  block:
+    - name: Install nvm
+      ansible.builtin.shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+      args:
+        executable: /bin/bash
+        chdir: "$HOME"
+        creates: "$HOME/.nvm/nvm.sh"
+
+    - name: Setup .profile
+      ansible.builtin.lineinfile:
+        path: ~/.profile
+        line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
+        create: yes
+
+    - name: Install node
+      ansible.builtin.shell: |
+        source /root/.nvm/nvm.sh && nvm install {{item}}
+      args:
+        executable: /bin/bash
+        chdir: "$HOME"
+        creates: "$HOME/.nvm/versions/node/v{{item}}"
+      loop:
+        - 14.17.1
