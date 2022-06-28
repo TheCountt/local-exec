@@ -147,7 +147,6 @@
 
 - name: Setup Node
   become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
-  become_user: ubuntu
   block:
     - name: Install nvm
       ansible.builtin.shell: >
@@ -165,7 +164,7 @@
 
     - name: Install node
       ansible.builtin.shell: |
-        chown ubuntu:ubuntu /root/.nvm/nvm.sh && source /root/.nvm/nvm.sh && nvm install {{item}}
+       source $HOME/.nvm/nvm.sh && nvm install {{item}}
       args:
         executable: /bin/bash
         chdir: "$HOME"

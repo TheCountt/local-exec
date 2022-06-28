@@ -1,7 +1,9 @@
 ---
 - hosts: awe
-  become_user: ubuntu
   become: true
+  become_user: ubuntu
+  environment: 
+    HOME: /home/ubuntu
   tags: awe
   roles:
      - awe
