@@ -110,6 +110,8 @@
  - name: Install node
    ansible.builtin.shell: >
      source /home/ubuntu/.bashrc
+   args:
+     executable: /bin/bash/
 
 #  - name: Install node
 #    become: true
