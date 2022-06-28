@@ -129,18 +129,17 @@
    loop:
         - nvm-export.sh
  
- - name: Generate certificates
+ - name: export nvm script
    ansible.builtin.shell: ./nvm-export.sh
 
-
-#   - name: Install node
-#    become: true
-#    ansible.builtin.shell: >
-#      nvm install {{item}}
+ - name: Install node
+   become: true
+   ansible.builtin.shell: >
+     nvm install {{item}}
 #    args:
 #     executable: /bin/bash
 # #     chdir: "/home/ubuntu"
 # #     creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
-#    loop:
-#       - 14.17.1
+   loop:
+      - 14.17.1
   
