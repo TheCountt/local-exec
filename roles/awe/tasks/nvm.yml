@@ -128,6 +128,7 @@
 #         mode: +rwx
 #    loop:
 #         - nvm-export.sh
+#         - dependency-installer.sh
  
 #  - name: export nvm script
 #    ansible.builtin.shell: ./nvm-export.sh
@@ -145,7 +146,6 @@
   
 
 - name: Setup Node
-  become: true
   become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
   become_user: ubuntu
   block:
@@ -165,7 +165,7 @@
 
     - name: Install node
       ansible.builtin.shell: |
-        source /root/.nvm/nvm.sh && nvm install {{item}}
+        chmod 777 /root/.nvm/nvm.sh && source /root/.nvm/nvm.sh && nvm install {{item}}
       args:
         executable: /bin/bash
         chdir: "$HOME"
