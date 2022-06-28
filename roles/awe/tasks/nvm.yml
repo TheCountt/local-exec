@@ -198,6 +198,7 @@
       path: "/usr/local/nvm"
       group: $USER
       owner: $USER
+      mode: 0755
       recurse: yes
       state: directory
    
