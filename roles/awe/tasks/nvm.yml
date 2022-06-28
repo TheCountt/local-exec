@@ -94,7 +94,7 @@
  - name: add nvm line 1 to ~/.bashrc
    lineinfile:
     path: /home/ubuntu/.bashrc
-    line: export NVM_DIR="/home/ubuntu/.nvm"
+    line: NVM_DIR="/home/ubuntu/.nvm"
     
 
  - name: add nvm line 2 to ~/.bashrc
