@@ -91,10 +91,10 @@
      mode: 0755
      url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh"
 
- - name: add nvm line 1 to ~/.bashrc
-   lineinfile:
-    path: /home/ubuntu/.bashrc
-    line: NVM_DIR="/home/ubuntu/.nvm"
+#  - name: add nvm line 1 to ~/.bashrc
+#    lineinfile:
+#     path: /home/ubuntu/.bashrc
+#     line: NVM_DIR="/home/ubuntu/.nvm"
     
 
 #  - name: add nvm line 2 to ~/.bashrc
@@ -121,5 +121,5 @@
     executable: /home/ubuntu/
 #     chdir: "/home/ubuntu"
 #     creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
-#    loop:
-#       - 14.17.1
+   loop:
+      - 14.17.1
