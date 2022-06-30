@@ -30,6 +30,7 @@
 
 
 - name: Install Redis
+  become_user: $USER
   ansible.builtin.apt:
     name: redis
     update_cache: true
