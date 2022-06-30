@@ -28,10 +28,9 @@
     curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
   run_once: true
-  ignore_errors: true
+  ignore_errors: false
 
 - name: Install Redis
-  become_user: root
   ansible.builtin.apt:
     name: redis
     update_cache: true
@@ -47,10 +46,9 @@
 #    daemon_reload: yes
 #   notify: Enable Redis
 
-##############vMongoDB
+##############MongoDB
 
 - name: Install gnupg library
-  become_user: root
   ansible.builtin.apt:
     name: gnupg
     force_apt_get: yes
