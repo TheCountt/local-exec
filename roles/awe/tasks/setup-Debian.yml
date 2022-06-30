@@ -50,6 +50,7 @@
 ##############vMongoDB
 
 - name: Install gnupg library
+  become_user: root
   ansible.builtin.apt:
     name: gnupg
     force_apt_get: yes
