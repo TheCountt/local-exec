@@ -1,5 +1,9 @@
 ---
 - name: Setup Node
+  become_user: ubuntu
+  environment: 
+    HOME: /home/ubuntu
+    USER: ubuntu
   become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
   block:
     - name: Install node version manager
