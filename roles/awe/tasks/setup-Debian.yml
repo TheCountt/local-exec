@@ -29,6 +29,7 @@
     echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
   args:
     run_once: true
+    ignore_errors: truev
 
 - name: Install Redis
   become_user: $USER
