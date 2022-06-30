@@ -8,18 +8,18 @@
 
 - import_tasks: nvm.yml
 
-- name: Install needed dependency modules globally
-  executable: $HOME/.bashrc
-  npm:
-    name: "{{item}}"
-    global: yes
-  loop: 
-    - dotenv
-    - pm2
-
 # - name: Install needed dependency modules globally
-#   shell: >
-#     npm install dotenv -g
+#   npm:
+#     name: "{{item}}"
+#     global: yes
+#   loop: 
+#     - dotenv
+#     - pm2
+
+- name: Install needed dependency modules globally
+  executable: $HOME/.nvm/nvm.sh
+  shell: >
+    source $HOME/.nvm/nvm.sh && npm install dotenv -g
 
     # chdir: "{{ ansible_env.HOME }}"
     # creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
