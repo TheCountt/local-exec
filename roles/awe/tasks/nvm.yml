@@ -1,154 +1,8 @@
 ---
-# - name: NVM | nvm | create .nvm directory
-#   file:
-#     path: "/usr/local/nvm"
-#     group: ubuntu
-#     owner: ubuntu
-#     recurse: yes
-#     state: directory
-
-# - name: "nvm"
-#   shell: >
-#     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-#   args:
-#     executable: /bin/bash
-#     chdir: "{{ ansible_env.HOME }}"
-#     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
-# - name: "node"
-#   shell: >
-#     . {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install {{ item }}
-#   args:
-#     executable: /bin/bash
-#     chdir: "{{ ansible_env.HOME }}"
-#     creates: "{{ ansible_env.HOME }}/.nvm/versions/v{{ item }}"
-#   loop:
-#     - 14.17.1
-
-
-
-
-
-# # - name: NVM | nvm | get stats on nvm destination
-# #   stat:
-# #     path: "{{ nvm_dest }}"
-# #   register: nvm_stat
-
-# # - name: NVM | nvm | create .nvm directory
-# #   file:
-# #     path: "/usr/local/nvm"
-# #     
-# #     recurse: yes
-# #     state: directory
-# #   when: not nvm_stat.stat.exists
-
-# # - name: NVM | nvm | download nvm script
-# #   get_url:
-# #     dest: "{{ nvm_dest }}"
-# #     group: "{{ nvm_group | default(nvm_user) }}"
-# #     owner: "{{ nvm_user }}"
-# #     mode: 0755
-# #     url: https://raw.githubusercontent.com/creationix/nvm/{{ nvm_version }}/nvm.sh
-
-# # - name: NVM | nvm | add nvm line 1 to ~/.bashrc
-# #   lineinfile:
-# #     path: "{{ nvm_working_path }}/.bashrc"
-# #     line: export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-
-# # - name: NVM | nvm | add nvm line 2 to ~/.bashrc
-# #   lineinfile:
-# #     path: "{{ nvm_working_path }}/.bashrc"
-# #     line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
-
-
-#   # - name: NVM | nvm | add nvm line 1 to ~/.bashrc
-# #   lineinfile:
-# #     path: ~/.bashrc
-# #     line: export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-
-# # - name: NVM | nvm | add nvm line 2 to ~/.bashrc
-# #   lineinfile:
-# #     path: ~/.bashrc
-# #     line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
-
-
-
-#  - name: create .nvm directory
-#    file:
-#      path: /home/ubuntu
-#      group: ubuntu
-#      owner: ubuntu
-#      mode: 0755
-#      recurse: yes
-#      state: directory
-
-
-#  - name: download nvm script
-#    get_url:
-#      dest: "/home/ubuntu"
-#      group: ubuntu
-#      owner: ubuntu
-#      mode: 0755
-#      url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh"
-
-#  - name: add nvm line 1 to ~/.bashrc
-#    lineinfile:
-#     path: /home/ubuntu/.bashrc
-#     line: NVM_DIR="/home/ubuntu/.nvm"
-    
-
-#  - name: add nvm line 2 to ~/.bashrc
-#    lineinfile:
-#      path: "/home/ubuntu/.bashrc"
-#      line: '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
-
-#  - name: add nvm line 3 to ~/.bashrc
-#    lineinfile:
-#      path: "/home/ubuntu/.bashrc"
-#      line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
-
-#  - name: Install node
-#    ansible.builtin.shell: >
-#      source /home/ubuntu/.bashrc
-#    args:
-#      executable: /home/
-####################################################################################
-#  - name: "nvm"
-#    shell: >
-#     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-#    args:
-#     # executable: /bin/bash
-#     chdir: "{{ ansible_env.HOME }}"
-#     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
-#  - name: Copy to home directory
-#    template:
-#         src: "./templates/{{ item }}.j2"
-#         dest: "/home/ubuntu/{{ item }}"
-#         mode: +rwx
-#    loop:
-#         - nvm-export.sh
-#         - dependency-installer.sh
- 
-#  - name: export nvm script
-#    ansible.builtin.shell: ./nvm-export.sh
-
-#  - name: Install node
-#    become: true
-#    ansible.builtin.shell: >
-#      nvm install {{item}}
-#    args:
-#     executable: /bin/bash
-# # #     chdir: "/home/ubuntu"
-# # #     creates: "/home/ubuntu/.nvm/versions/node/v{{item}}"
-#    loop:
-#       - 14.17.1
-  
-##############################################################################################3
 - name: Setup Node
   become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
   block:
-    - name: Install nvm
+    - name: Install node version manager
       ansible.builtin.shell: >
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
       args:
@@ -158,10 +12,11 @@
 
     - name: Setup .profile
       ansible.builtin.lineinfile:
-        path: ~/.profile
-        line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
+        path: $HOME/.profile
+        line: source $HOME/.nvm/nvm.sh # This will make sure Node is on the user's PATH
         create: yes
 
+############################################################
     - name: add nvm line 1 to ~/.bashrc
       lineinfile:
        path: $HOME/.bashrc
@@ -177,7 +32,7 @@
       lineinfile:
        path: "$HOME/.bashrc"
        line: '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
-    
+######################################################
     
     - name: Install node
       ansible.builtin.shell: |
