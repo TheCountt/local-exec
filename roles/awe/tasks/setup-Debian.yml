@@ -31,7 +31,7 @@
   ignore_errors: true
 
 - name: Install Redis
-  become_user: $USER
+  become_user: root
   ansible.builtin.apt:
     name: redis
     update_cache: true
