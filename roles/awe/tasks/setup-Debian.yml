@@ -18,9 +18,6 @@
 
 - name: Install needed dependency modules globally
   shell: >
-    source $HOME/.nvm/nvm.sh && npm install dotenv -g
+    source $HOME/.nvm/nvm.sh && npm install dotenv -g && npm install pm2@latest -g
   args:
    executable: /bin/bash
-
-    # chdir: "{{ ansible_env.HOME }}"
-    # creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
