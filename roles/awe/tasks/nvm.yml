@@ -165,7 +165,7 @@
     - name: add nvm line 1 to ~/.bashrc
       lineinfile:
        path: $HOME/.bashrc
-       line: NVM_DIR="$HOME/.nvm"
+       line: 'export NVM_DIR="$HOME/.nvm"'
     
 
     - name: add nvm line 2 to ~/.bashrc
