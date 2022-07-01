@@ -70,7 +70,11 @@
     force_apt_get: yes
     state: present
   loop:
-      - "mongodb-org=5.0.9"   
+      - "mongodb-org=5.0.9"
+      - "mongodb-org-server=5.0.9"
+      - "mongodb-org-shell=5.0.9"
+      - "mongodb-org-mongos=5.0.9"
+      - "mongodb-org-tools=5.0.9"  
 
 
 
