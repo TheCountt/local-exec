@@ -1,0 +1,83 @@
+---
+## Install NVM & Setup Node
+- name: Setup Node
+  become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
+  block:
+    - name: Install node version manager
+      ansible.builtin.shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+      args:
+        executable: /bin/bash
+        chdir: "$HOME"
+        creates: "$HOME/.nvm/nvm.sh"
+
+    - name: Setup .profile
+      ansible.builtin.lineinfile:
+        path: $HOME/.profile
+        line: source $HOME/.nvm/nvm.sh # This will make sure Node is on the user's PATH
+        create: yes
+    
+    - name: Install node
+      ansible.builtin.shell: |
+       source $HOME/.nvm/nvm.sh && nvm install {{item}}
+      args:
+        executable: /bin/bash
+        chdir: "$HOME"
+        creates: "$HOME/.nvm/versions/node/v{{item}}"
+      loop:
+        - 14.17.1
+
+
+## Install dotenv module and pm2 process manager globally using npm
+- name: Install dotenv & pm2
+  shell: >
+    source $HOME/.nvm/nvm.sh && npm install dotenv -g && npm install pm2@latest -g
+  args:
+   executable: /bin/bash
+
+## Redis
+- name: Set up Redis repo
+  shell: >
+    curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+  run_once: true
+  ignore_errors: false
+
+- name: Install Redis
+  ansible.builtin.apt:
+    name: redis
+    update_cache: true
+    force_apt_get: yes
+  notify:
+     - Enable Redis
+
+## MongoDB
+- name: Install gnupg library
+  ansible.builtin.apt:
+    name: gnupg
+    force_apt_get: yes
+
+- name: Add an Apt signing key
+  ansible.builtin.apt_key:
+    url: https://www.mongodb.org/static/pgp/server-5.0.asc
+    state: present
+
+- name: Create List file for MongoDB
+  shell: >
+   echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+   
+- name: Install MongoDB Packages (Specific version)
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+    force_apt_get: yes
+    state: present
+  loop:
+      - "mongodb-org=5.0.9"
+      - "mongodb-org-server=5.0.9"
+      - "mongodb-org-shell=5.0.9"
+      - "mongodb-org-mongos=5.0.9"
+      - "mongodb-org-tools=5.0.9"  
+
+
+
