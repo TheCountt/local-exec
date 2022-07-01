@@ -1,0 +1,11 @@
+---
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /etc/hosts
+    mode: '0666'
+
+- name: add aric ip to hosts file
+  shell: >
+     echo "{{aric_ip}} {{local_dns_name}}" >> /etc/hosts
+   
+ 

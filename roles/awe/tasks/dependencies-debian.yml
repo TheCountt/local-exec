@@ -18,7 +18,7 @@
         create: yes
     
     - name: Install node
-      ansible.builtin.shell: |
+      ansible.builtin.shell: >
        source $HOME/.nvm/nvm.sh && nvm install {{item}}
       args:
         executable: /bin/bash
