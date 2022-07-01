@@ -4,8 +4,9 @@
     path: /etc/hosts
     mode: '0666'
 
+## add needed ip and resolve to a local DNS name
 - name: add aric ip to hosts file
   shell: >
-     echo "{{aric_ip}} {{local_dns_name}}" >> /etc/hosts
+     echo "192.168.100.50 aricuat.anp" >> /etc/hosts
    
  
