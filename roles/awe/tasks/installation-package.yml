@@ -9,7 +9,7 @@
   shell: >
      echo "192.168.100.50 aricuat.anp" >> /etc/hosts
   register: etc_hosts_file
-  failed_when: '"192.168.100.50 aricuat.anp"  in etc_hosts_file.stdout'
+  failed_when: '"192.168.100.50 aricuat.anp" not in etc_hosts_file.stdout'
 
    
  
