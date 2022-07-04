@@ -48,7 +48,6 @@
     name: redis
     update_cache: true
     force_apt_get: yes
-    enabled: yes
   notify:
      - Enable Redis
 
