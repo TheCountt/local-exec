@@ -74,7 +74,10 @@
 - name: Create List file for MongoDB
   shell: >
    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-   
+  args:
+   chdir: "$HOME"
+   creates: $HOME/filemongodb
+
 - name: Install MongoDB Packages (Specific version)
   ansible.builtin.apt:
     name: "{{ item }}"
