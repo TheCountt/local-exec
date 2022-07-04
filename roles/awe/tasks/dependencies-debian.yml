@@ -35,6 +35,11 @@
   args:
    executable: /bin/bash
 
+- name: install dotenv cli
+  ansible.builtin.apt:
+    name: python3-dotenv-cli=2.0.1-1
+    update_cache: true
+
 ## Redis
 - name: Set up Redis repo
   shell: >
