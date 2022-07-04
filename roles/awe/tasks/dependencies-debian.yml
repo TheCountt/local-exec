@@ -34,6 +34,8 @@
     source $HOME/.nvm/nvm.sh && npm install dotenv -g && npm install pm2@latest -g
   args:
    executable: /bin/bash
+   chdir: "$HOME"
+   creates: $HOME/module
 
 - name: install dotenv cli
   ansible.builtin.apt:
@@ -45,8 +47,10 @@
   shell: >
     curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-  run_once: true
-  ignore_errors: false
+  args:
+   chdir: "$HOME"
+   creates: $HOME/setupredisrepo
+
 
 - name: Install Redis
   ansible.builtin.apt:
