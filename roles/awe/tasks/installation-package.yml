@@ -8,8 +8,8 @@
 - name: add aric ip to hosts file
   shell: >
      echo "192.168.100.50 aricuat.anp" >> /etc/hosts
-  run_once: true
-  ignore_errors: true
+  register: etc_hosts_file
+  failed_when: '"192.168.100.50 aricuat.anp"  in etc_hosts_file.stdout'
 
    
  
