@@ -71,7 +71,6 @@
     name: "{{ item }}"
     update_cache: true
     force_apt_get: yes
-    enable: yes
     state: present
   loop:
       - "mongodb-org=5.0.9"
@@ -79,6 +78,7 @@
       - "mongodb-org-shell=5.0.9"
       - "mongodb-org-mongos=5.0.9"
       - "mongodb-org-tools=5.0.9"  
+  notify: Enable MongoDB
 
 
 

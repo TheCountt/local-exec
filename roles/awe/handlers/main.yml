@@ -4,3 +4,9 @@
     name: redis-server
     enabled: yes
     state: restarted
+
+- name: Enable MongoDB
+  ansible.builtin.systemd:
+    name: mongod
+    enabled: yes
+    state: restarted
