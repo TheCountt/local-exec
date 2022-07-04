@@ -6,7 +6,7 @@
 
 ## add needed ip and resolve to a local DNS name
 - name: add aric ip to hosts file
-  shell: >
+  command: >
      sed -i "2 a 192.168.100.50\ aricuat.anp" /etc/hosts
   args:
     creates: $HOME/hosts_file
