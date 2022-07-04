@@ -10,4 +10,5 @@
      sed -i "2 a 192.168.100.50\ aricuat.anp" /etc/hosts
   args:
     creates: $HOME/hosts_file
+  run_once: true
 
