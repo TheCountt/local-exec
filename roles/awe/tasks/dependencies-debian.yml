@@ -9,7 +9,7 @@
       args:
         executable: /bin/bash
         chdir: "$HOME"
-        create: "$HOME/.nvm/nvm.sh"
+        creates: "$HOME/.nvm/nvm.sh"
 
     - name: Setup .profile
       ansible.builtin.lineinfile:
@@ -23,7 +23,7 @@
       args:
         executable: /bin/bash
         chdir: "$HOME"
-        create: "$HOME/.nvm/versions/node/v{{item}}"
+        creates: "$HOME/.nvm/versions/node/v{{item}}"
       loop:
         - 14.17.1
 
@@ -35,7 +35,7 @@
   args:
    executable: /bin/bash
    chdir: "$HOME"
-   create: $HOME/module
+   creates: $HOME/module
 
 - name: install dotenv cli
   ansible.builtin.apt:
@@ -49,7 +49,7 @@
     echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
   args:
    chdir: "$HOME"
-   create: $HOME/setupredisrepo
+   creates: $HOME/setupredisrepo
 
 
 - name: Install Redis
@@ -76,7 +76,7 @@
    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
   args:
    chdir: "$HOME"
-   create: $HOME/filemongodb
+   creates: $HOME/filemongodb
 
 - name: Install MongoDB Packages (Specific version)
   ansible.builtin.apt:
