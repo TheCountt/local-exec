@@ -14,8 +14,6 @@
    
 - name: Set cap_sys_chroot+ep on /foo
   capabilities:
-    path: $HOME/.nvm/versions/node/v{{item}}
+    path: $HOME/.nvm/versions/node/v14.17.1
     capability: cap_net_bind_service=+ep
     state: present
-  loop: 
-    -14.17.1
