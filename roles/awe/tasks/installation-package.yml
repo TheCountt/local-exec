@@ -5,16 +5,24 @@
     mode: '0666'
 
 ## add needed ip and resolve to a local DNS name
-- name: add aric ip to hosts file
-  shell: >
-     echo "192.168.100.50 aricuat.anp" >> /etc/hosts
-  register: etc_hosts_file
-  changed_when: "'192.168.100.50 aricuat.anp' not in etc_hosts_file.stdout"
+# - name: add aric ip to hosts file
+  # shell: >
+  #    echo "192.168.100.50 aricuat.anp" >> /etc/hosts
+  # register: etc_hosts_file
+  # changed_when: "'192.168.100.50 aricuat.anp' not in etc_hosts_file.stdout"
 
- ## set net bind service
+- name: Add aric ip to hosts file and resolve to local DNS
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: 
+      - 192.168.100.50 aricuat.anp
+    create: yes
+
+ ## set net bind service for node to bind on port 443
 - name: Set cap_net_bind_service on node path
   capabilities:
     path: $HOME/.nvm/versions/node/v14.17.1
-    capability: "cap_net_bind_service=+ep"
+    capability: cap_net_bind_service+ep
     state: present
+
 
