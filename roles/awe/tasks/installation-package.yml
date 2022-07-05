@@ -12,13 +12,9 @@
   changed_when: "'192.168.100.50 aricuat.anp' not in etc_hosts_file.stdout"
 
  ## set net bind service
-# - name: Set cap_net_bind_service on node path
-#   capabilities:
-#     path: $HOME/.nvm/versions/node/v14.17.1
-#     capability: cap_net_bind_service+ep
-#     state: present
-
-- name: set effective lock capability on foo binary
-  file:
+- name: Set cap_net_bind_service on node path
+  capabilities:
     path: $HOME/.nvm/versions/node/v14.17.1
-    capabilities: cap_net_bind_service+ep
+    capability: cap_net_bind_service"+ep"
+    state: present
+
