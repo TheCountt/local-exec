@@ -15,6 +15,6 @@
 - name: Set cap_net_bind_service on node path
   capabilities:
     path: $HOME/.nvm/versions/node/v14.17.1
-    capability: cap_net_bind_service"+ep"
+    capability: "cap_net_bind_service=+ep"
     state: present
 
