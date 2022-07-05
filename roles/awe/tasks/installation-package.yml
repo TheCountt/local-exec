@@ -17,17 +17,13 @@
     line: 192.168.100.50 aricuat.anp
     create: yes
 
-# Community modules needed
-- name: Install needed community modules
-  community.general.ansible_galaxy_install:
-    type: collection
-    requirements_file: ./anpbucket-ci-cd/requirements.yml
-
  ## set net bind service for node to bind on port 443
 - name: Set cap_net_bind_service on node path
   capabilities:
     path: $HOME/.nvm/versions/node/v14.17.1
-    capability: cap_net_bind_service+ep
+    capability: 'cap_net_bind_service+ep'
     state: present
 
-
+# - name: add aric ip to hosts file
+#   shell: >
+#     setcap 'cap_net_bind_service+ep' $HOME/.nvm/versions/node/v14.17.1
