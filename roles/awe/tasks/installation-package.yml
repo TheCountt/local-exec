@@ -14,8 +14,7 @@
 - name: Add aric ip to hosts file and resolve to local DNS
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: 
-      - 192.168.100.50 aricuat.anp
+    line: 192.168.100.50 aricuat.anp
     create: yes
 
  ## set net bind service for node to bind on port 443
