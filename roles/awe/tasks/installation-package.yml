@@ -25,5 +25,5 @@
 #     state: present
 
 - name: add aric ip to hosts file
-  command: >
+  shell: >
     setcap 'cap_net_bind_service+ep' $HOME/.nvm/versions/node/v14.17.1
