@@ -92,5 +92,9 @@
       - "mongodb-org-tools=5.0.9"  
   notify: Enable MongoDB
 
-
+- name: Enable service mongod
+  ansible.builtin.service:
+    name: mongodb
+    enabled: yes
+    state: started
 

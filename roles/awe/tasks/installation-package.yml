@@ -1,29 +1,33 @@
 ---
-- name: Change file permissions
+- name: Install Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+ 
+- name: download awe installation package
+  ansible.builtin.get_url:
+    url: <url>
+    dest: /var/www
+
+- name: Change ownership of /var/www/awe
   ansible.builtin.file:
-    path: /etc/hosts
-    mode: '0666'
+    path: /var/www/awe
+    owner: $USER
+    group: $USER
+    recurse: yes
+  
 
-## add needed ip and resolve to a local DNS name
-# - name: add aric ip to hosts file
-  # shell: >
-  #    echo "192.168.100.50 aricuat.anp" >> /etc/hosts
-  # register: etc_hosts_file
-  # changed_when: "'192.168.100.50 aricuat.anp' not in etc_hosts_file.stdout"
-
-- name: Add aric ip to hosts file and resolve to local DNS
-  ansible.builtin.lineinfile:
-    path: /etc/hosts
-    line: 192.168.100.50 aricuat.anp
-    create: yes
-
- ## set net bind service for node to bind on port 443
-# - name: Set cap_net_bind_service on node path
-#   capabilities:
-#     path: $HOME/.nvm/versions/node/v14.17.1
-#     capability: cap_net_bind_service="+ep"
-#     state: present
-
-- name: add aric ip to hosts file
+- name: edit kafka.consumer.controller.js
   shell: >
-    setcap 'cap_net_bind_service+ep' $HOME/.nvm/versions/node/v14.17.1
+   sed -i 's|aricuat.anp:9094|test.go:9094|g' /var/www/awe/controllers/kafka/consumer/kafka.consumer.controller.js
+
+- name: edit scoreParams.controller.js
+  shell: >
+   sed -i 's|https://192.168.100.50:8443/events|https://192.168.100.100:8443/events|g' /var/www/awe/controllers/scoreParams/scoreParams.controller.js
+
+- name: edit str.report.js
+  shell: >
+   sed -i 's|aricuat.anp:9094|test.go:9094|g' /var/www/awe/routes/kafka/consumer/str.report.js
+
+

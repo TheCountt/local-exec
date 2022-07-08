@@ -1,0 +1,19 @@
+---
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /etc/hosts
+    mode: '0666'
+
+- name: Add aric ip to hosts file and resolve to local DNS
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: 192.168.100.50 aricuat.anp
+    create: yes
+
+ ## set net bind service for node to bind on port 443
+# - name: Set cap_net_bind_service on node path
+#   capabilities:
+#     path: $HOME/.nvm/versions/node/v14.17.1
+#     capability: cap_net_bind_service="+ep"
+#     state: present
+
