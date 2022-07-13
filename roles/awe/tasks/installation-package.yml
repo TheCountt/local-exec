@@ -18,11 +18,10 @@
 
 
 - name: Change ownership of /var/www/awe
-  become_user: ubuntu
   ansible.builtin.file:
     path: /var/www/awe
-    owner: $USER
-    group: $USER
+    owner: ubuntu
+    group: ubuntu
     recurse: yes
   
 
