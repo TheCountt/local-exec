@@ -7,8 +7,15 @@
  
 - name: download awe installation package
   ansible.builtin.get_url:
-    url: <url>
+    url: https://refinitiv-1.s3.us-west-2.amazonaws.com/awe.tar.gz
     dest: /var/www
+
+- name: Unarchive etcd binary file
+  ansible.builtin.unarchive:
+    src: /var/www/awe.tar.gz
+    dest: /var/www
+    remote_src: yes
+
 
 - name: Change ownership of /var/www/awe
   ansible.builtin.file:
