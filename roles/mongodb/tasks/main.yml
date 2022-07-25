@@ -50,7 +50,7 @@
     
 - name: configure mongod config file
   ansible.builtin.template:
-    src: templates/mongod.conf.j2
+    src: /templates/mongod.conf.j2
     dest: /etc/mongod.conf 
     follow: yes
   notify: Restart MongoDB
