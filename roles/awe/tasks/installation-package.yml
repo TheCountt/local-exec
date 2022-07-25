@@ -34,12 +34,16 @@
    sed -i 's|aricuat.anp|aricprod.anp|g' $HOME/awe/routes/kafka/consumer/str.report.js
 
 
-- name: copy aric certificate authority, client certificate and key files to scoreParams folder
-  shell: >
-    mv ca.crt client.crt client.key $HOME/controllers/scoreParams
-
-
+- name:  copy aric certificate authority, client certificate and key files to scoreParams folder
+  ansible.builtin.template:
+    src: templates/"{{ item }}".j2
+    dest: $HOME/awe/controllers/scoreParams
+    follow: yes
+  loop:
+    - ca.crt
+    - client.crt
+    - client.key 
 
 - name: Replace mongodb address with the correct address globally in config.env file
   shell: >
-    sed -i 's|192.168.100.110|<mongodb_ip_address|g' $HOME/config/config.env
+    sed -i 's|192.168.100.110|<mongodb_ip_address|g' $HOME/awe/config/config.env
