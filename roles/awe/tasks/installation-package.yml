@@ -1,25 +1,19 @@
----
-- name: Install Nginx
-  ansible.builtin.apt:
-    name: nginx
-    state: latest
-    update_cache: yes
- 
+--- 
 - name: download awe installation package
   ansible.builtin.get_url:
     url: https://refinitiv-1.s3.us-west-2.amazonaws.com/awe.tar.gz
-    dest: /var/www
+    dest: $HOME
 
 - name: Unarchive etcd binary file
   ansible.builtin.unarchive:
-    src: /var/www/awe.tar.gz
-    dest: /var/www
+    src: awe.tar.gz
+    dest: $HOME
     remote_src: yes
 
 
-- name: Change ownership of /var/www/awe
+- name: Change ownership of installation package
   ansible.builtin.file:
-    path: /var/www/awe
+    path: $HOME/awe
     owner: ubuntu
     group: ubuntu
     recurse: yes
@@ -27,14 +21,25 @@
 
 - name: edit kafka.consumer.controller.js
   shell: >
-   sed -i 's|aricuat.anp:9094|test.go:9094|g' /var/www/awe/controllers/kafka/consumer/kafka.consumer.controller.js
+   sed -i 's|aricuat.anp|aricprod.anp|g' $HOME/awe/controllers/kafka/consumer/kafka.consumer.controller.js
+
 
 - name: edit scoreParams.controller.js
   shell: >
-   sed -i 's|https://192.168.100.50:8443/events|https://192.168.100.100:8443/events|g' /var/www/awe/controllers/scoreParams/scoreParams.controller.js
+   sed -i 's|192.168.100.50|192.168.100.38|g' $HOME/awe/controllers/scoreParams/scoreParams.controller.js
+
 
 - name: edit str.report.js
   shell: >
-   sed -i 's|aricuat.anp:9094|test.go:9094|g' /var/www/awe/routes/kafka/consumer/str.report.js
+   sed -i 's|aricuat.anp|aricprod.anp|g' $HOME/awe/routes/kafka/consumer/str.report.js
 
 
+- name: copy aric certificate authority, client certificate and key files to scoreParams folder
+  shell: >
+    mv ca.crt client.crt client.key $HOME/controllers/scoreParams
+
+
+
+- name: Replace mongodb address with the correct address globally in config.env file
+  shell: >
+    sed -i 's|192.168.100.110|<mongodb_ip_address|g' $HOME/config/config.env
