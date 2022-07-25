@@ -45,4 +45,4 @@
 
 - name: Replace mongodb address with the correct address globally in config.env file
   shell: >
-    sed -i 's|192.168.100.110|<mongodb_ip_address|g' $HOME/awe/config/config.env
+    sed -i 's|192.168.100.110|172.31.1.180|g' $HOME/awe/config/config.env

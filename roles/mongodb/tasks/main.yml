@@ -52,5 +52,4 @@
   ansible.builtin.template:
     src: ./templates/mongod.conf.j2
     dest: /etc/mongod.conf 
-    # remote_src: yes
   notify: Restart MongoDB
