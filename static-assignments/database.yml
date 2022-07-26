@@ -1,6 +1,9 @@
 ---
 - hosts: mongodb
   become: true
+  environment: 
+    HOME: /home/ubuntu
+    USER: ubuntu
   tags: mongodb
   roles:
      - mongodb
