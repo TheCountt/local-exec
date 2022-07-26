@@ -19,11 +19,10 @@
     recurse: yes
 
 
-- name: Copy mongodb import script
+- name: Copy mongodb import script into the empty new file
   ansible.builtin.template:
     src: "./templates/mongodb-script.sh.j2"
-    dest: $HOME/awe_db_data
-  run_once: true
+    dest: "$HOME/mongodb-script.sh"
 
 
 # - name: Run mongodb import script
