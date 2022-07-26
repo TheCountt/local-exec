@@ -1,12 +1,12 @@
 ---
 - name: download awe mongodb seed data
   ansible.builtin.get_url:
-    url: https://refinitiv-1.s3.us-west-2.amazonaws.com/awe_db_data.zip
+    url: https://refinitiv-1.s3.us-west-2.amazonaws.com/awe_db_data.tar.gz
     dest: $HOME
 
 - name: Unarchive the compressed folder
   ansible.builtin.unarchive:
-    src: awe_db_data.zip
+    src: awe_db_data.tar.gz
     dest: $HOME
     remote_src: yes
 
