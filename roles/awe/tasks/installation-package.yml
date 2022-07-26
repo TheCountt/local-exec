@@ -45,6 +45,7 @@
     - ca.crt
     - client.crt
     - client.key
+  run_once: true
 
 - name: Replace mongodb address with the correct address globally in config.env file
   shell: >
