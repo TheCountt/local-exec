@@ -19,7 +19,7 @@
     recurse: yes
 
 
-- name: Copy mongodb import script into the empty new file
+- name: Copy mongodb import script
   ansible.builtin.template:
     src: "./templates/mongodb-script.sh.j2"
     dest: "$HOME/mongodb-script.sh"
