@@ -30,7 +30,7 @@
 
 - name: edit kafka.consumer.data.js
   shell: >
-   sed -i 's|aricuat.anp|aricprod.anp|g' $HOME/awe/routes/kafka/consumer/kafka.consumer.controller.js
+   sed -i 's|aricuat.anp|aricprod.anp|g' $HOME/awe/routes/kafka/consumer/kafka.consumer.data.js
 
 - name: edit str.report.js
   shell: >
@@ -45,7 +45,6 @@
     - ca.crt
     - client.crt
     - client.key
-  run_once: true
 
 - name: Replace mongodb address with the correct address globally in config.env file
   shell: >
