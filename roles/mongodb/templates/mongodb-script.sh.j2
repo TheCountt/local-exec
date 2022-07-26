@@ -1,0 +1,13 @@
+{
+mongoimport -d test -c awe_individual_kycs --file $HOME/awe_db_data/awe_individual_kycs.json --jsonArray
+mongoimport -d test -c awe_organization_kycs --file $HOME/awe_db_data/awe_organization_kycs.json --jsonArray
+mongoimport -d test -c awe_rating_score_configs --file /$HOME/awe_db_data/awe_rating_score_configs.json --jsonArray
+mongoimport -d test -c awe_refresh_tokens --file $HOME/awe_db_data/awe_refresh_tokens.json --jsonArray
+mongoimport -d test -c awe_roles --file $HOME/awe_db_data/awe_roles.json --jsonArray
+mongoimport -d test -c awe_score_params --file $HOME/awe_db_data/awe_score_params.json --jsonArray
+mongoimport -d test -c awe_users --file $HOME/awe_db_data/awe_users.json --jsonArray
+mongoimport -d test -c str_reports --file $HOME/awe_db_data/str_reports.json --jsonArray
+mongoimport -d test -c sftp_creds --file $HOME/awe_db_data/sftp_creds.json --jsonArray
+mongoimport -d test -c reporter_creds --file $HOME/awe_db_data/reporter_creds.json --jsonArray
+mongoimport -d test -c awe_socket.io-adapter-events --file $HOME/awe_db_data/awe_socket.io-adapter-events.json --jsonArray
+}

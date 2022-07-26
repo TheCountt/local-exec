@@ -4,7 +4,7 @@
     url: https://refinitiv-1.s3.us-west-2.amazonaws.com/awe.tar.gz
     dest: $HOME
 
-- name: Unarchive etcd binary file
+- name: Unarchive awe compressed folder
   ansible.builtin.unarchive:
     src: awe.tar.gz
     dest: $HOME
@@ -28,6 +28,9 @@
   shell: >
    sed -i 's|192.168.100.50|192.168.100.38|g' $HOME/awe/controllers/scoreParams/scoreParams.controller.js
 
+- name: edit kafka.consumer.data.js
+  shell: >
+   sed -i 's|aricuat.anp|aricprod.anp|g' $HOME/awe/routes/kafka/consumer/kafka.consumer.controller.js
 
 - name: edit str.report.js
   shell: >
@@ -36,12 +39,13 @@
 
 - name:  copy aric certificate authority, client certificate and key files to scoreParams folder
   ansible.builtin.template:
-    src: ./templates/{{ item }}.j2
+    src: "./templates/{{ item }}.j2"
     dest: $HOME/awe/controllers/scoreParams
   loop:
     - ca.crt
     - client.crt
-    - client.key 
+    - client.key
+  run_once: true
 
 - name: Replace mongodb address with the correct address globally in config.env file
   shell: >

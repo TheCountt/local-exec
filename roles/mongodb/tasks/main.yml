@@ -1,55 +1,6 @@
 ---
-- name: Install gnupg library
-  ansible.builtin.apt:
-    name: gnupg
-    force_apt_get: yes
+- include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
 
-- name: Add an Apt signing key
-  ansible.builtin.apt_key:
-    url: https://www.mongodb.org/static/pgp/server-5.0.asc
-    state: present
-
-- name: Create List file for MongoDB
-  shell: >
-   echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-  args:
-   chdir: "$HOME"
-   creates: $HOME/filemongodb
-
-- name: Install MongoDB Packages (Specific version)
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    update_cache: true
-    force_apt_get: yes
-    state: present
-  loop:
-      - "mongodb-org=5.0.9"
-      - "mongodb-org-server=5.0.9"
-      - "mongodb-org-shell=5.0.9"
-      - "mongodb-org-mongos=5.0.9"
-      - "mongodb-org-tools=5.0.9"  
-
-- name: Enable service mongod
-  ansible.builtin.service:
-    name: mongod
-    enabled: yes
-    state: started
-
-
-- name: rename the default configurarion file
-  ansible.builtin.copy:
-    src: /etc/mongod.conf 
-    dest: /etc/mongod.conf-original
-    mode: '0755'
-    remote_src: yes
-
-- name: create new mongod conf file
-  ansible.builtin.file: 
-    path: /etc/mongod.conf 
-    state: touch
-    
-- name: configure mongod config file
-  ansible.builtin.template:
-    src: ./templates/mongod.conf.j2
-    dest: /etc/mongod.conf 
-  notify: Restart MongoDB
+- include_tasks: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
