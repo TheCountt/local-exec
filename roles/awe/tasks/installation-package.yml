@@ -39,7 +39,7 @@
 
 - name:  copy aric certificate authority, client certificate and key files to scoreParams folder
   ansible.builtin.template:
-    src: "./templates/{{ item.src }}.j2"
+    src: "./templates/{{ item }}.j2"
     dest: "$HOME/awe/controllers/scoreParams/{{ item }}"
   loop:
     - ca.crt
