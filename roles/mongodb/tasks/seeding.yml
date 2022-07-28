@@ -27,6 +27,6 @@
 
 - name: Run mongodb import script
   command: ./mongodb-script.sh
-  args:
-   chdir: "$HOME"
-   creates: $HOME/scriptdb
+  # args:
+  #  chdir: "$HOME"
+  #  creates: $HOME/scriptdb
