@@ -1,4 +1,31 @@
 ---
+
+- name: install python3
+  ansible.builtin.apt:
+    name: 
+      - python3
+      - python3-pip
+      - python3-dev
+      - libpq-dev
+    state: present
+
+- name: Install setuptools
+  pip:
+    name: setuptools
+    extra_args: --upgrade
+
+- name: upgrade pip command
+  pip:
+    name: pip
+    extra_args: --upgrade
+
+
+- name: install pip dependencies
+  pip:
+    name:  pymongo
+    executable: pip3
+
+
 - name: Install gnupg library
   ansible.builtin.apt:
     name: gnupg
