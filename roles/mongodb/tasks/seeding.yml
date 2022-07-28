@@ -23,6 +23,9 @@
   ansible.builtin.template:
     src: "./templates/mongodb-script.sh.j2"
     dest: "$HOME/mongodb-script.sh"
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
 
 
 - name: Run mongodb import script
