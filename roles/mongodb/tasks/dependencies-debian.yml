@@ -82,6 +82,9 @@
   notify: Restart MongoDB
 
 - name: Ensure replicaset rs0 exists
-  mongodb_replicaset:
+  community.mongodb.mongodb_replicaset:
+    login_host: localhost
+    login_port: 27017
+    login_database: test
     replica_set: rs0
    
