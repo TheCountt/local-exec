@@ -90,6 +90,3 @@
 
 - name: Initiate the Replicaset
   command: "mongo --host 127.0.0.1 --port 27017 --eval 'printjson(rs.initiate())'"
-  # args:
-  #       chdir: "$HOME"
-  #       creates: "$HOME/.nvm/versions/node/v{{item}}"
