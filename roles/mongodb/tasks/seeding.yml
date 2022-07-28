@@ -25,6 +25,8 @@
     dest: "$HOME/mongodb-script.sh"
 
 
-# - name: Run mongodb import script
-#   shell: >
-#     ./mongodb-script.sh
+- name: Run mongodb import script
+  command: ./mongodb-script.sh
+  args:
+   chdir: "$HOME"
+   creates: $HOME/scriptdb

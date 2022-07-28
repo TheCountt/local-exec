@@ -1,6 +1,6 @@
 ---
-- include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- import_tasks: host-tuning.yml
 
-- include_tasks: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
+- import_tasks: dependencies.yml
+
+- import_tasks: seeding.yml

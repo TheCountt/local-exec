@@ -1,8 +1,0 @@
----
-
-- name: NVM | setup-RedHat | Install Required Packages
-  yum:
-    name: "{{ shared_packages | union(redhat_packages) }}"
-    state: present
-    update_cache: yes
-  become: true

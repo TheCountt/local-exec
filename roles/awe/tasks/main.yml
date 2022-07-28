@@ -1,14 +1,6 @@
 ---
-- include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- import_tasks: dependencies.yml
 
-- include_tasks: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
+- import_tasks: hosts-entry.yml
 
-# - include: nvm.yml
-#   become_user: "{{ nvm_user }}"
-#   become: true
-
-# - include: node.yml
-#   become_user: "{{ nvm_user }}"
-#   become: true
+- import_tasks: install_edit-package.yml

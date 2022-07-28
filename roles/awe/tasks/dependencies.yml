@@ -60,6 +60,12 @@
   notify:
      - Enable Redis
 
+- name: Enable service redis-server
+  ansible.builtin.service:
+    name: redis-server
+    enabled: yes
+    state: started
+
 ## MongoDB
 - name: Install gnupg library
   ansible.builtin.apt:
