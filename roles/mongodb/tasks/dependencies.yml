@@ -6,6 +6,7 @@
       - python3.8-pip
       - python3-dev
       - libpq-dev
+    update_cache: yes
     state: present
 
 - name: Install setuptools
