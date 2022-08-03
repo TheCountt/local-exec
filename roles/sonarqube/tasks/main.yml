@@ -73,10 +73,5 @@
     name: sonar
     state: started
     enabled: yes
-
-# - name: Re-execute the SonarQube service
-#   systemd:
-#     state: started
-#     enabled: yes
-#     daemon_reexec: yes
-#     name: sonar
+    daemon_reload: yes
+  notify: Reload Sonarqube server daemon

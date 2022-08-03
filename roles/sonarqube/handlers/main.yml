@@ -1,6 +1,6 @@
-# handlers file for sonarqube
-# - name: Reload Sonarqube server daemon
-#   ansible.builtin.systemd:
-#     name: sonar
-#     daemon_reload: yes
-#     state: restarted
+---
+- name: Reload Sonarqube server daemon
+  ansible.builtin.systemd:
+    name: sonar
+    daemon_reload: yes
+    state: restarted
