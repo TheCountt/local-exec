@@ -2,10 +2,11 @@
 - name: Update ubuntu
   ansible.builtin.apt:
    update_cache: yes
+   force_apt_get: yes
 
 
 # Install and Configure these softwares on CI server for Containerization in Pipeline
-- name: install java 11 and other packages
+- name: install the following packages
   ansible.builtin.apt:
    name: "{{ item }}"
    state: present
@@ -14,27 +15,39 @@
     - fontconfig
     - openjdk-11-jre
     - unzip
-    # - docker.io
+    - docker.io
+    - docker-compose
     # - nodejs
     # - npm
-    # - docker-compose
 
-- name: install jenkins apt repository key
+- name: download jenkins & kubernetes keys
   apt_key: 
-   url: https://pkg.jenkins.io/debian/jenkins.io.key
+   url: "{{ item }}"
    state: present
+  loop:
+    - https://pkg.jenkins.io/debian/jenkins.io.key
+    - https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
-- name: ensure the repository is installed
+- name: add jenkins & kubernetes apt repostiories
   apt_repository: 
-   repo: 'deb https://pkg.jenkins.io/debian binary/'
+   repo: "{{ item }}"
    state: present
+  loop:
+    - "deb https://pkg.jenkins.io/debian binary/"
+    - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
   
-- name: install jenkins
+- name: install the tools
   ansible.builtin.apt: 
-   name: jenkins
+   name: "{{ item }}"
    state: present
    update_cache: yes
    force_apt_get: yes
+  loop:
+    - jenkins
+    - curl
+    - ca-certificates
+    - apt-transport-https
+    - kubectl
 
 - name: start and enable jenkins
   ansible.builtin.service:
