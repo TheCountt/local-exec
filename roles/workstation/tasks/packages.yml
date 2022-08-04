@@ -83,6 +83,8 @@
   copy:
     src: "{{ item.path }}"
     dest: /usr/local/bin/
+    owner: ubuntu
+    group: ubuntu
     remote_src: yes
   with_items: "{{ eksctl_files_to_copy.files }}"
 
