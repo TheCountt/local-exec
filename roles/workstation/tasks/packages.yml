@@ -53,6 +53,7 @@
 
 # Anchore Engine for image scanning
 - name: get anchore engine
+  remote_user: ubuntu
   ansible.builtin.get_url:
     url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
     dest: ./local-exec/docker-compose.yaml
