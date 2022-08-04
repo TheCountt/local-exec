@@ -47,7 +47,7 @@ pipeline {
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
          }
        }
-       
    }
+   
 }
 
