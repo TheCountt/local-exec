@@ -70,7 +70,6 @@
   unarchive:
    src: /tmp/eksctl_Linux_amd64.tar.gz
    dest: /tmp
-  remote_src: yes
 
 
 - name: Locate eksctl file(s) to copy
