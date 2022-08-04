@@ -21,7 +21,7 @@
   loop:
     - "deb https://pkg.jenkins.io/debian binary/"
     - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
-    - "deb https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+    - "deb https://apt.releases.hashicorp.com/ focal  main"
   
 - name: install the following packages using apt_get
   ansible.builtin.apt: 
