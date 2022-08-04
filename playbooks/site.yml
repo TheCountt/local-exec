@@ -11,9 +11,9 @@
 # - name: webserver assignment
 #   ansible.builtin.import_playbook: ../static-assignments/webserver.yml
 
-- name: database assignment
-  ansible.builtin.import_playbook: ../static-assignments/database.yml
+# - name: database assignment
+#   ansible.builtin.import_playbook: ../static-assignments/database.yml
 
-- name: awe assignment
-  ansible.builtin.import_playbook: ../static-assignments/awe.yml
+# - name: awe assignment
+#   ansible.builtin.import_playbook: ../static-assignments/awe.yml
 

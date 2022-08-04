@@ -1,6 +1,0 @@
----
-- import_tasks: dependencies.yml
-
-- import_tasks: hosts-entry.yml
-
-- import_tasks: install_edit-package.yml
