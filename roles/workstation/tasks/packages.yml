@@ -80,11 +80,12 @@
   register: eksctl_files_to_copy
     
 - name: Copy found item(s)
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.path }}"
     dest: /usr/local/bin/
     owner: ubuntu
     group: ubuntu
+    mode: '0755'
     remote_src: yes
   with_items: "{{ eksctl_files_to_copy.files }}"
 
