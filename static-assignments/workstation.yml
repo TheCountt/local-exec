@@ -1,6 +1,9 @@
 ---
 - hosts: workstation
   become: true
+  remote_user: ubuntu
+  environment: 
+    HOME: /home/ubuntu
   tags: workstation
   roles:
      - workstation
