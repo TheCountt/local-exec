@@ -39,7 +39,7 @@
 
 - name: Change file ownership, group and permissions
   ansible.builtin.file:
-    path: ./.docker
+    path: $HOME/.docker
     owner: ubuntu
     group: ubuntu
     recurse: yes
@@ -58,15 +58,8 @@
    daemon_reload: yes
   notify: Restart docker server
 
-# - name: Start docker
-#   become: true
-#   ansible.builtin.systemd: 
-#     name: docker
-#     state: restarted
-#     enabled: yes
-#     daemon_reload: yes
-
-# - name: start anchore engine
-#   community.docker.docker_compose:
-#     project_src: ./local-exec/
-#     state: present
+#################### Start Anchore Engine
+- name: start anchore engine
+  community.docker.docker_compose:
+    project_src: $HOME/local-exec/
+    state: present

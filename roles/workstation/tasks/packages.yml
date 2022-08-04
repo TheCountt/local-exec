@@ -60,6 +60,7 @@
     group: ubuntu
     mode: 0755
 
+# Donwload eksctl in case we want to use it
 - name: Download eksctl
   get_url:
     url: https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_linux_amd64.tar.gz
