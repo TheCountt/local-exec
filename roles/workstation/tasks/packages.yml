@@ -51,10 +51,10 @@
     # - nodejs
     # - npm
 
-- name: start and enable jenkins
-  ansible.builtin.service:
-   name: jenkins
-   state: started
-   enabled: true
-   daemon_reload: yes
-  notify: Restart jenkins server
+# Anchore Engine for image scanning
+- name: get anchore engine
+  ansible.builtin.get_url:
+    url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
+    dest: ./local/exec/docker-compose.yaml
+    mode: 0755
+

@@ -1,64 +1,64 @@
 ---
-# - name: install jenkins on debian OS
-#   include_tasks: debian.yml
-#   when: ansible_os_family == 'Debian'
-
-# - name: install jenkins on redhat OS
-#   include_tasks: redhat.yml
-#   when: ansible_os_family == 'Redhat'
-
-# Community modules needed
+##########   Community modules needed
 - name: Install needed community modules
   community.general.ansible_galaxy_install:
     type: collection
     requirements_file: ./local-exec/requirements.yml
 
+
+############## Packages needed
+
 - import_tasks: packages.yml
   
 
+###################  Start & enable jenkins service
+
+- name: start and enable jenkins
+  ansible.builtin.service:
+   name: jenkins
+   state: started
+   enabled: true
+   daemon_reload: yes
+  notify: Restart jenkins server
+
+#################### Configure, start & enable docker
+
 # # docker configuration for non-root user
-# - name: Create group "docker"
-#   ansible.builtin.group:
-#     name: docker
-#     state: present
+- name: Create group "docker"
+  ansible.builtin.group:
+    name: docker
+    state: present
 
 
-# - name: Add user to group 'docker'
-#   ansible.builtin.user:
-#     name: jenkins
-#     comment: Name of user to add to group docker
-#     group: docker
+- name: Add user to group 'docker'
+  ansible.builtin.user:
+    name: ubuntu
+    comment: Name of user to add to group docker
+    group: docker
 
 
-# - name: Change file ownership, group and permissions
-#   ansible.builtin.file:
-#     path: ./.docker
-#     owner: jenkins
-#     group: jenkins
-#     recurse: yes
-#     mode: '0666'
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: ./.docker
+    owner: ubuntu
+    group: ubuntu
+    recurse: yes
+    mode: '0666'
 
-# - name: Change file ownership, group and permissions
-#   ansible.builtin.file:
-#     path: /var/run/docker.sock
-#     mode: '0666'
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /var/run/docker.sock
+    mode: '0666'
 
-# - name: Start docker
-#   become: true
-#   ansible.builtin.systemd: 
-#     name: docker
-#     state: restarted
-#     enabled: yes
-#     daemon_reload: yes
-
-# # Anchore Engine for image scanning
-# - name: get anchore engine
-#   ansible.builtin.get_url:
-#     url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
-#     dest: ./docker-compose.yaml
-#     mode: 0755
+- name: Start docker
+  become: true
+  ansible.builtin.systemd: 
+    name: docker
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
 
 # - name: start anchore engine
 #   community.docker.docker_compose:
-#     project_src: ./
+#     project_src: ./local-exec/
 #     state: present
