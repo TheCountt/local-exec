@@ -54,3 +54,34 @@ The offending line appears to be:
      - workstation
        ^ here
 
+2022-08-04 14:41:43,994 p=19933 u=ubuntu n=ansible | ERROR! the role 'workstation' was not found in /home/ubuntu/local-exec/playbooks/../static-assignments/roles:/home/ubuntu/local-exec/local-exec/roles:/home/ubuntu/local-exec/playbooks/../static-assignments
+
+The error appears to be in '/home/ubuntu/local-exec/static-assignments/workstation.yml': line 6, column 8, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+     - workstation
+       ^ here
+
+2022-08-04 14:43:08,395 p=20010 u=ubuntu n=ansible | PLAY [workstation] ************************************************************************************************************************************************
+2022-08-04 14:43:08,411 p=20010 u=ubuntu n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2022-08-04 14:43:09,766 p=20010 u=ubuntu n=ansible | ok: [172.31.5.212]
+2022-08-04 14:43:09,789 p=20010 u=ubuntu n=ansible | TASK [workstation : Install needed community modules] *************************************************************************************************************
+2022-08-04 14:43:28,780 p=20010 u=ubuntu n=ansible | changed: [172.31.5.212]
+2022-08-04 14:43:28,792 p=20010 u=ubuntu n=ansible | TASK [workstation : Update ubuntu] ********************************************************************************************************************************
+2022-08-04 14:43:32,275 p=20010 u=ubuntu n=ansible | changed: [172.31.5.212]
+2022-08-04 14:43:32,288 p=20010 u=ubuntu n=ansible | TASK [workstation : install java 11 and other packages] ***********************************************************************************************************
+2022-08-04 14:43:40,422 p=20010 u=ubuntu n=ansible | changed: [172.31.5.212] => (item=fontconfig)
+2022-08-04 14:44:05,096 p=20010 u=ubuntu n=ansible | changed: [172.31.5.212] => (item=openjdk-11-jre)
+2022-08-04 14:44:05,111 p=20010 u=ubuntu n=ansible | TASK [workstation : install jenkins apt repository key] ***********************************************************************************************************
+2022-08-04 14:44:06,359 p=20010 u=ubuntu n=ansible | changed: [172.31.5.212]
+2022-08-04 14:44:06,372 p=20010 u=ubuntu n=ansible | TASK [workstation : ensure the repository is installed] ***********************************************************************************************************
+2022-08-04 14:44:12,649 p=20010 u=ubuntu n=ansible | changed: [172.31.5.212]
+2022-08-04 14:44:12,662 p=20010 u=ubuntu n=ansible | TASK [workstation : install jenkins] ******************************************************************************************************************************
+2022-08-04 14:44:42,334 p=20010 u=ubuntu n=ansible | changed: [172.31.5.212]
+2022-08-04 14:44:42,347 p=20010 u=ubuntu n=ansible | TASK [workstation : start and enable jenkins] *********************************************************************************************************************
+2022-08-04 14:44:43,281 p=20010 u=ubuntu n=ansible | ok: [172.31.5.212]
+2022-08-04 14:44:43,315 p=20010 u=ubuntu n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2022-08-04 14:44:43,316 p=20010 u=ubuntu n=ansible | 172.31.5.212               : ok=8    changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

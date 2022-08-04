@@ -31,6 +31,7 @@ Note down the steps and automate with Ansible.
 -       Docker
 -       Cloudbees Docker build and Push
 -       Anchore
+-       Kubernetes
 
 **Credentials to create in Jenkins**
 -   bitbucket credentials
