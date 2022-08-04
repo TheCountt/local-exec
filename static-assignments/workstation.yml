@@ -1,6 +1,6 @@
 ---
-- hosts: jenkins
+- hosts: workstation
   become: true
-  tags: jenkins
+  tags: workstation
   roles:
-     - jenkins
+     - workstation

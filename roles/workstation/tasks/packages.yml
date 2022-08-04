@@ -13,10 +13,10 @@
   loop: 
     - fontconfig
     - openjdk-11-jre
-    - docker.io
+    # - docker.io
     # - nodejs
     # - npm
-    - docker-compose
+    # - docker-compose
 
 - name: install jenkins apt repository key
   apt_key: 

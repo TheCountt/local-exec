@@ -1,0 +1,56 @@
+2022-08-04 14:27:42,426 p=18555 u=ubuntu n=ansible |  [ERROR]: User interrupted execution
+
+2022-08-04 14:28:44,216 p=18676 u=ubuntu n=ansible |  [ERROR]: User interrupted execution
+
+2022-08-04 14:29:30,017 p=18738 u=ubuntu n=ansible |  [ERROR]: User interrupted execution
+
+2022-08-04 14:29:57,771 p=18820 u=ubuntu n=ansible |  [ERROR]: User interrupted execution
+
+2022-08-04 14:32:56,986 p=19123 u=ubuntu n=ansible |  [ERROR]: User interrupted execution
+
+2022-08-04 14:35:31,259 p=19270 u=ubuntu n=ansible | [WARNING]: Unable to parse /home/ubuntu/local-exec/local-exec/inventory as an inventory source
+
+2022-08-04 14:35:31,259 p=19270 u=ubuntu n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2022-08-04 14:35:31,265 p=19270 u=ubuntu n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2022-08-04 14:35:58,231 p=19341 u=ubuntu n=ansible | 172.31.5.212 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2022-08-04 14:36:29,796 p=19590 u=ubuntu n=ansible | ERROR! the role 'jenkins' was not found in /home/ubuntu/local-exec/playbooks/../static-assignments/roles:/home/ubuntu/local-exec/local-exec/roles:/home/ubuntu/local-exec/playbooks/../static-assignments
+
+The error appears to be in '/home/ubuntu/local-exec/static-assignments/workstation.yml': line 6, column 8, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+     - jenkins
+       ^ here
+
+2022-08-04 14:38:28,779 p=19687 u=ubuntu n=ansible | ERROR! the role 'workstation' was not found in /home/ubuntu/local-exec/playbooks/../static-assignments/roles:/home/ubuntu/local-exec/local-exec/roles:/home/ubuntu/local-exec/playbooks/../static-assignments
+
+The error appears to be in '/home/ubuntu/local-exec/static-assignments/workstation.yml': line 8, column 8, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+     - workstation
+       ^ here
+
+2022-08-04 14:39:02,064 p=19735 u=ubuntu n=ansible | ERROR! the role 'workstation' was not found in /home/ubuntu/local-exec/playbooks/../static-assignments/roles:/home/ubuntu/local-exec/local-exec/roles:/home/ubuntu/local-exec/playbooks/../static-assignments
+
+The error appears to be in '/home/ubuntu/local-exec/static-assignments/workstation.yml': line 6, column 8, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+     - workstation
+       ^ here
+
