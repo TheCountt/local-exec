@@ -60,3 +60,30 @@
     group: ubuntu
     mode: 0755
 
+- name: Download eksctl
+  get_url:
+    url: https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz
+    dest: /tmp/eksctl_Linux_amd64.tar.gz
+    timeout: 600
+    
+- name: Unarchive eksctl binary file
+  unarchive:
+   src: /tmp/eksctl_Linux_amd64.tar.gz
+   dest: /tmp
+  remote_src: yes
+
+
+- name: Locate eksctl file(s) to copy
+  ansible.builtin.find:
+    paths: /tmp/eksctl_Linux_amd64/
+    recurse: yes
+    patterns: "eksctl*"
+  register: eksctl_files_to_copy
+    
+- name: Copy found item(s)
+  copy:
+    src: "{{ item.path }}"
+    dest: /usr/local/bin/
+    remote_src: yes
+  with_items: "{{ eksctl_files_to_copy.files }}"
+
