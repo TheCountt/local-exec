@@ -50,13 +50,21 @@
     path: /var/run/docker.sock
     mode: '0666'
 
-- name: Start docker
-  become: true
-  ansible.builtin.systemd: 
-    name: docker
-    state: restarted
-    enabled: yes
-    daemon_reload: yes
+- name: start and enable docker
+  ansible.builtin.service:
+   name: docker
+   state: started
+   enabled: true
+   daemon_reload: yes
+  notify: Restart docker server
+
+# - name: Start docker
+#   become: true
+#   ansible.builtin.systemd: 
+#     name: docker
+#     state: restarted
+#     enabled: yes
+#     daemon_reload: yes
 
 # - name: start anchore engine
 #   community.docker.docker_compose:

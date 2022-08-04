@@ -1,9 +1,15 @@
 ---
 - name: Restart jenkins server
   systemd: 
-    name: "{{ item }}"
+    name: jenkins
     state: restarted
     enabled: yes
     daemon_reload: yes
-  loop:
-    - jenkins
+
+
+- name: Restart docker
+  ansible.builtin.systemd: 
+    name: docker
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
