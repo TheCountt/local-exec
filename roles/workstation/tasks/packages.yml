@@ -48,8 +48,8 @@
     - docker.io
     - docker-compose
     - terraform=1.0.2
-    # - nodejs
-    # - npm
+    - nodejs
+    - npm
 
 # Anchore Engine for image scanning
 - name: get anchore engine
