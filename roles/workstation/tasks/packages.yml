@@ -37,14 +37,6 @@
     - ca-certificates
     - apt-transport-https
     - kubectl
-
-- name: install the following packages using apt_get
-  ansible.builtin.apt: 
-   name: "{{ item }}"
-   state: absent
-   update_cache: yes
-   force_apt_get: yes
-  loop:
     - nodejs
     - npm
 
