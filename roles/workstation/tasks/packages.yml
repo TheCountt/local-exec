@@ -23,7 +23,7 @@
     - "deb https://pkg.jenkins.io/debian binary/"
     - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
     - "deb https://apt.releases.hashicorp.com/ focal  main"
-    - "deb https://deb.nodesource.com/setup_16.x/ focal main"
+    - "deb https://deb.nodesource.com/node_16.x focal main"
   
 - name: install the following packages using apt_get
   ansible.builtin.apt: 
