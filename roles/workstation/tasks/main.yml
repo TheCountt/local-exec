@@ -59,7 +59,7 @@
   notify: Restart docker server
 
 #################### Start Anchore Engine
-- name: start anchore engine
-  community.docker.docker_compose:
-    project_src: $HOME/local-exec/
-    state: absent
+# - name: start anchore engine
+#   community.docker.docker_compose:
+#     project_src: $HOME/local-exec/
+#     state: present
