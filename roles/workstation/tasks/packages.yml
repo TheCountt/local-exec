@@ -93,3 +93,7 @@
     remote_src: yes
   with_items: "{{ eksctl_files_to_copy.files }}"
 
+- name: Install packages based on package.json
+  community.general.npm:
+    path: $HOME/simple-mern-app
+    state: present
