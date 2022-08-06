@@ -62,4 +62,4 @@
 - name: start anchore engine
   community.docker.docker_compose:
     project_src: $HOME/local-exec/
-    state: present
+    state: absent

@@ -30,8 +30,9 @@ Note down the steps and automate with Ansible.
 -	Junit (preinstalled in Jenkins)
 -       Docker
 -       Cloudbees Docker build and Push
--       Anchore
+-       Grype Scanner(Anchore is deprecated)
 -       Kubernetes
+-       Http Request
 
 **Credentials to create in Jenkins**
 -   bitbucket credentials

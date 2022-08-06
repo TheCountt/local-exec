@@ -55,13 +55,13 @@
 
 
 # Anchore Engine for image scanning
-- name: get anchore engine
-  ansible.builtin.get_url:
-    url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
-    dest: ./local-exec/docker-compose.yaml
-    owner: ubuntu
-    group: ubuntu
-    mode: 0755
+# - name: get anchore engine
+#   ansible.builtin.get_url:
+#     url:  https://engine.anchore.io/docs/quickstart/docker-compose.yaml
+#     dest: ./local-exec/docker-compose.yaml
+#     owner: ubuntu
+#     group: ubuntu
+#     mode: 0755
 
 # Donwload eksctl in case we want to use it
 - name: Download eksctl
