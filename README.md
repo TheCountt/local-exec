@@ -33,6 +33,7 @@ Note down the steps and automate with Ansible.
 -       Grype Scanner(Anchore is deprecated)
 -       Kubernetes
 -       Http Request
+-       Pipeline Utility Steps
 
 **Credentials to create in Jenkins**
 -   bitbucket credentials

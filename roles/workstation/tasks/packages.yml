@@ -63,12 +63,15 @@
 #     group: ubuntu
 #     mode: 0755
 
-# Donwload eksctl in case we want to use it
-- name: Download eksctl
+# Donwload eksctl and grype
+- name: Download eksctl & grype(for scanning)
   get_url:
-    url: https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_linux_amd64.tar.gz
-    dest: /tmp/eksctl_linux_amd64.tar.gz
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
     timeout: 600
+  loop:
+    - {url: "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_linux_amd64.tar.gz", dest: "/tmp/eksctl_linux_amd64.tar.gz"}
+    - {url: " https://raw.githubusercontent.com/anchore/grype/main/install.sh", dest: "/usr/local/bin"}
     
 - name: Unarchive eksctl binary file
   unarchive:
