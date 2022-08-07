@@ -71,7 +71,7 @@
     timeout: 600
   loop:
     - {url: "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_linux_amd64.tar.gz", dest: "/tmp/eksctl_linux_amd64.tar.gz"}
-    - {url: " https://raw.githubusercontent.com/anchore/grype/main/install.sh", dest: "/usr/local/bin"}
+    - {url: " https://raw.githubusercontent.com/anchore/grype/main/install.sh", dest: "/tmp/install.sh"}
     
 - name: Unarchive eksctl binary file
   unarchive:
@@ -79,12 +79,12 @@
    dest: /tmp
 
 
-- name: Locate eksctl file(s) to copy
+- name: Locate  file(s) to copy
   ansible.builtin.find:
     paths: /tmp/
     recurse: yes
-    patterns: "eksctl*"
-  register: eksctl_files_to_copy
+    patterns: eksctl*,install.sh
+  register: files_to_copy
     
 - name: Copy found item(s)
   ansible.builtin.copy:
@@ -94,7 +94,7 @@
     group: ubuntu
     mode: '0755'
     remote_src: yes
-  with_items: "{{ eksctl_files_to_copy.files }}"
+  with_items: "{{ files_to_copy.files }}"
 
 - name: Install packages based on package.json
   community.general.npm:
