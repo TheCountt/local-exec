@@ -4,11 +4,6 @@
    update_cache: yes
    force_apt_get: yes
 
-- name: Downloading and installing grype for scanning
-  ansible.builtin.apt:
-    deb: "{{ grype_debian_url }}"
-    state: present
-
 - name: download jenkins, kubernetes, terraform & nodejs keys
   apt_key: 
    url: "{{ item }}"
@@ -57,6 +52,10 @@
     - docker-compose
     - terraform=1.0.2
 
+- name: Downloading and installing grype for scanning
+  ansible.builtin.apt:
+    deb: "{{ grype_debian_url }}"
+    state: present
 
 # Anchore Engine for image scanning
 # - name: get anchore engine
@@ -86,7 +85,7 @@
   ansible.builtin.find:
     paths: /tmp/
     recurse: yes
-    patterns: eksctl*,install.sh
+    patterns: eksctl*
   register: files_to_copy
     
 - name: Copy found item(s)
