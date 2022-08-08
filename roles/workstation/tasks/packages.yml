@@ -4,6 +4,10 @@
    update_cache: yes
    force_apt_get: yes
 
+- name: Downloading and installing grype for scanning
+  ansible.builtin.apt:
+    deb: "{{ grype_debian_url }}"
+    state: present
 
 - name: download jenkins, kubernetes, terraform & nodejs keys
   apt_key: 
@@ -63,15 +67,14 @@
 #     group: ubuntu
 #     mode: 0755
 
-# Donwload eksctl and grype
-- name: Download eksctl & grype(for scanning)
+- name: Download eksctl
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
     timeout: 600
   loop:
     - {url: "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_linux_amd64.tar.gz", dest: "/tmp/eksctl_linux_amd64.tar.gz"}
-    - {url: " https://raw.githubusercontent.com/anchore/grype/main/install.sh", dest: "/tmp/install.sh"}
+  
     
 - name: Unarchive eksctl binary file
   unarchive:
@@ -100,3 +103,4 @@
   community.general.npm:
     path: $HOME/simple-mern-app
     state: present
+
