@@ -56,8 +56,6 @@
 - name: Downloading and installing grype for scanning
   ansible.builtin.apt:
     deb: "{{ grype_debian_url }}"
-    owner: ubuntu
-    group: ubuntu
     state: present
 
 # Anchore Engine for image scanning
