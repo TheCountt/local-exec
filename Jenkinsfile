@@ -54,7 +54,7 @@ pipeline {
 
       stage('Trigger another jenkins') {
         steps {
-          build job: '~/simple-mern-app', propagate: true, wait: true
+          build job: 'simple-mern-app', propagate: true, wait: true
         }
       }
 
