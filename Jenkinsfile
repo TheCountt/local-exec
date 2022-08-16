@@ -44,12 +44,19 @@ pipeline {
           }
         }
 
-      stage('Clean Workspace after build' ){
+      stage('Clean Workspace after build') {
         steps {
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
          }
        }
 
+
+
+      stage('Trigger another jenkins') {
+        steps {
+          build job: '~/simple-mern-app', propagate: true, wait: true
+        }
+      }
 
    }
    
