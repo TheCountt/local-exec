@@ -23,11 +23,13 @@ pipeline {
           }
         }
 
+
         stage('Checkout SCM') {
          steps{
             git branch: 'main', changelog: false, credentialsId: 'local-exec', url: 'https://github.com/TheCountt/local-exec.git'
           }
        }
+
 
         stage('Prepare Ansible For Execution') {
          steps {
