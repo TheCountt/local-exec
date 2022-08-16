@@ -51,8 +51,8 @@ pipeline {
      stage ('Run next pipeline') {
         steps {
          sh """
-          echo 'Run simple_mern_app_pipeline!'
-          build job: 'simple-mern-app'
+          echo Run simple_mern_app_pipeline!
+          build job: 'simple-mern-app ', parameters: [string(name: 'PARAMS', value: 'value from Build pipeline')]
             """
           }
        }
