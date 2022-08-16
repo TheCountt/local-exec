@@ -42,11 +42,22 @@ pipeline {
           }
         }
 
-      stage('Clean Workspace after build'){
-        steps{
+      stage('Clean Workspace after build' ){
+        steps {
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
          }
        }
+
+     stage ('Run next pipeline') {
+        steps {
+         sh """
+          echo Run simple_mern_app_pipeline!
+          build job: './simple-mern-app ', parameters: [string(name: 'PARAMS', value: 'value from Build pipeline')]
+            """
+          }
+       }
+
+
    }
    
 }
