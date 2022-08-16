@@ -51,7 +51,6 @@ pipeline {
        }
 
 
-
       stage('Trigger pipeline in next repo') {
         steps {
           build job: 'simple-mern-app/main'
