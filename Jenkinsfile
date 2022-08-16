@@ -52,7 +52,7 @@ pipeline {
         steps {
          sh """
           echo 'Run simple_mern_app_pipeline!'
-          build job: './simple-mern-app'
+          build job: 'simple-mern-app'
             """
           }
        }
