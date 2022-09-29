@@ -80,6 +80,7 @@
   unarchive:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    remote_src: yes
   loop:
     - {url: "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz", dest: "/usr/local/bin"}
 
