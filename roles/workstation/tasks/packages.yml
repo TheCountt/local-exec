@@ -86,7 +86,7 @@
     - {src: "/tmp/helm-v3.10.0-linux-amd64.tar.gz", dest: "/tmp"}
 
 
-- name: Locate  file(s) to copy
+- name: Locate  files to copy
   ansible.builtin.find:
     paths: /tmp/
     recurse: yes
@@ -102,6 +102,13 @@
     mode: '0755'
     remote_src: yes
   with_items: "{{ files_to_copy.files }}"
+
+- name: Change file ownership, group and permissions of aws-iam-authenticator
+  ansible.builtin.file:
+    path: /usr/local/bin/aws-iam-authenticator
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
 
 - name: Install packages based on package.json
   community.general.npm:
