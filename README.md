@@ -1,4 +1,5 @@
 # ci/cd pipeline still in progress....
+## Tools: Jenkins, Ansible, Packer, Terraform, Sonarqube, Grype, Docker
 
 ## Pre-requisite Knowledge
 - Proficient in Ansible
