@@ -77,10 +77,10 @@
     - {url: "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz", dest: "/tmp/helm-v3.10.0-linux-amd64.tar.gz"}
     - {url: "https://s3.us-west-2.amazonaws.com/amazon-eks/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator", dest: "/usr/local/bin"}
     
-- name: Unarchive eksctl binary file
+- name: Unarchive the binary files
   unarchive:
-    src: /tmp/eksctl_linux_amd64.tar.gz
-    dest: /tmp
+    src: "{{ item.src}}"
+    dest: "{{ item.dest }}"
   loop:
     - {src: "/tmp/eksctl_linux_amd64.tar.gz", dest: "/tmp"}
     - {src: "/tmp/helm-v3.10.0-linux-amd64.tar.gz", dest: "/tmp"}
@@ -90,7 +90,7 @@
   ansible.builtin.find:
     paths: /tmp/
     recurse: yes
-    patterns: eksctl*,linux-amd*,helm*
+    patterns: eksctl*,helm*
   register: files_to_copy
     
 - name: Copy found item(s)
