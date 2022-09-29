@@ -74,29 +74,23 @@
     timeout: 600
   loop:
     - {url: "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_linux_amd64.tar.gz", dest: "/tmp/eksctl_linux_amd64.tar.gz"}
-    # - {url: "https://s3.us-west-2.amazonaws.com/amazon-eks/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator", dest: /usr/local/bin}
-
-- name: Unarchive the helm binary file
-  unarchive:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    remote_src: yes
-  loop:
-    - {src: "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz", dest: "/usr/local/bin"}
-
-
+    - {url: "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz", dest: "/tmp/helm-v3.10.0-linux-amd64.tar.gz"}
+    - {url: "https://s3.us-west-2.amazonaws.com/amazon-eks/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator", dest: "/usr/local/bin"}
     
-- name: Unarchive the binary files
+- name: Unarchive eksctl binary file
   unarchive:
-   src: /tmp/eksctl_linux_amd64.tar.gz
-   dest: /tmp
+    src: /tmp/eksctl_linux_amd64.tar.gz
+    dest: /tmp
+  loop:
+    - {src: "/tmp/eksctl_linux_amd64.tar.gz", dest: "/tmp"}
+    - {src: "/tmp/helm-v3.10.0-linux-amd64.tar.gz", dest: "/tmp"}
 
 
 - name: Locate  file(s) to copy
   ansible.builtin.find:
     paths: /tmp/
     recurse: yes
-    patterns: eksctl*
+    patterns: eksctl*,linux-amd*,helm*
   register: files_to_copy
     
 - name: Copy found item(s)
