@@ -108,7 +108,7 @@
     path: /usr/local/bin/aws-iam-authenticator
     owner: ubuntu
     group: ubuntu
-    mode: '765'
+    mode: '755'
 
 - name: Install packages based on package.json
   community.general.npm:
