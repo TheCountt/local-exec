@@ -76,6 +76,7 @@
     - {url: "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_linux_amd64.tar.gz", dest: "/tmp/eksctl_linux_amd64.tar.gz"}
     - {url: "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz", dest: "/tmp/helm-v3.10.0-linux-amd64.tar.gz"}
     - {url: "https://s3.us-west-2.amazonaws.com/amazon-eks/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator", dest: "/usr/local/bin"}
+    - {url: "https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl", dest: "/usr/local/bin"}
     
 - name: Unarchive the binary files
   unarchive:
