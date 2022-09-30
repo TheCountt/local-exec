@@ -67,7 +67,7 @@
 #     group: ubuntu
 #     mode: 0755
 
-- name: Download eksctl, helm, aws-iam-authenticator
+- name: Download eksctl, helm, kubectl, aws-iam-authenticator
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
@@ -104,12 +104,15 @@
     remote_src: yes
   with_items: "{{ files_to_copy.files }}"
 
-- name: Change file ownership, group and permissions of aws-iam-authenticator
+- name: Change file ownership, group and permissions of kubectl & aws-iam-authenticator
   ansible.builtin.file:
-    path: /usr/local/bin/aws-iam-authenticator
+    path: "/usr/local/bin/{{ item }}"
     owner: ubuntu
     group: ubuntu
     mode: '755'
+  loop:
+    - kubectl
+    - aws-iam-authenticator
 
 - name: Install packages based on package.json
   community.general.npm:
