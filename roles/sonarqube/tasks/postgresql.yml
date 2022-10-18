@@ -28,17 +28,17 @@
     group: postgres
     password: "{{ password | password_hash('sha512') }}"
 
-- name: Create a new database sonarqubedb
+- name: Create a new database
   become_user: postgres
   postgresql_db:
-    name: sonarqube
+    name: "{{ database_name }}"
     encoding: UTF-8
 
-- name: Create user sonarqube
+- name: Create user for new database
   become_user: postgres
   postgresql_user:
-    db: sonarqube
-    name: sonar
-    password: sonar
+    db: "{{ database_name }}"
+    name: "{{ database_username }}"
+    password: "{{ database_password }}"
     priv: "ALL"
    

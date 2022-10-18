@@ -1,2 +1,5 @@
 ---
 password: postgres
+database_name: sonarqube
+database_username: sonar
+database_password: sonar

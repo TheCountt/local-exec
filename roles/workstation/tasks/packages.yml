@@ -10,7 +10,7 @@
    state: present
   loop:
     - https://pkg.jenkins.io/debian/jenkins.io.key
-    - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    # - https://packages.cloud.google.com/apt/doc/apt-key.gpg
     - https://apt.releases.hashicorp.com/gpg
     - https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 
@@ -20,7 +20,7 @@
    state: present
   loop:
     - "deb https://pkg.jenkins.io/debian binary/"
-    - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+    # - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
     - "deb https://apt.releases.hashicorp.com/ focal  main"
     - "deb https://deb.nodesource.com/node_16.x focal main"
   
@@ -35,7 +35,7 @@
     - curl
     - ca-certificates
     - apt-transport-https
-    - kubectl
+    # - kubectl
     - nodejs
 
 
