@@ -12,7 +12,7 @@ pipeline {
     }
 
     parameters {
-        string(name: 'inventory', defaultValue: 'ci.ini', description: 'selecting the environment')
+        string(name: 'inventory', defaultValue: 'ci.yml', description: 'selecting the environment')
     }
 
     stages {
