@@ -1,8 +1,8 @@
 ---
-- name: Update ubuntu
-  ansible.builtin.apt:
-   update_cache: yes
-   force_apt_get: yes
+# - name: Update ubuntu
+#   ansible.builtin.apt:
+#    update_cache: yes
+#    force_apt_get: yes
 
 - name: download jenkins, kubernetes, terraform & nodejs keys
   apt_key: 
