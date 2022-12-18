@@ -1,5 +1,13 @@
-[workstation]
-172.31.5.212    ansible_user=ubuntu
+---
+all:
+ vars:
+  ansible_user: ubuntu
 
-[sonarqube]
-172.31.0.226    ansible_user=ubuntu
+ workstation:
+  hosts:
+   172.31.5.212:
+
+ sonarqube:
+  hosts:
+   172.31.0.226:
+ 
