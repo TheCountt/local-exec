@@ -4,8 +4,8 @@ all:
   workstation:
   sonarqube:
  
- vars:
-  ansible_user:"ubuntu"
+  vars:
+   ansible_user:"ubuntu"
 
 workstation:
  hosts:
