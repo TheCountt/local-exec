@@ -1,3 +1,4 @@
+---
 workstation:
   172.31.5.212  ansible_user:"ubuntu"
 
