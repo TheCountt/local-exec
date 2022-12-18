@@ -39,7 +39,7 @@ pipeline {
 
         stage('Execute Ansible playbook') {
             steps {
-                ansiblePlaybook colorized: true, credentialsId: 'local-exec', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
+                ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
             }
         }
 
