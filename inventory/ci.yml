@@ -3,13 +3,15 @@ all:
  children:
   workstation:
     hosts:
-     172.31.5.212 ansible_user:"ubuntu"
+     172.31.5.212
+     ansible_user:"ubuntu"
     vars:
      ansible_user:"ubuntu"
 
   sonarqube:
     hosts:
-     172.31.0.226 ansible_user:"ubuntu"
+     172.31.0.226
+     ansible_user:"ubuntu"
     vars:
      ansible_user:"ubuntu"
 
