@@ -2,18 +2,16 @@
 all:
  children:
   workstation:
+    hosts:
+     172.31.5.212 
+    vars:
+     ansible_user:"ubuntu"
+
   sonarqube:
- 
-  vars:
-   ansible_user:"ubuntu"
-
-workstation:
- hosts:
-  172.31.5.212
-
-sonarqube:
- hosts:
-  172.31.0.226
+    hosts:
+     172.31.0.226
+    vars:
+     ansible_user:"ubuntu"
 
 
  
